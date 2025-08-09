@@ -42,9 +42,9 @@ const App = () => (
           <Route path="/components/pickers" element={<PickersPage />} />
           <Route path="/components/progress" element={<ProgressExtraPage />} />
           {/* New docs pages */}
-          <Route path="/components/tooltip" element={<(await import('./pages/components/Tooltip')).default />} />
-          <Route path="/components/elevation" element={<(await import('./pages/components/Elevation')).default />} />
-          <Route path="/components/spacing" element={<(await import('./pages/components/Spacing')).default />} />
+          <Route path="/components/tooltip" element={<TooltipDocsPage />} />
+          <Route path="/components/elevation" element={<ElevationDocsPage />} />
+          <Route path="/components/spacing" element={<SpacingDocsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
