@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useAppTheme } from "@/theme/ThemeProvider";
-import { ClipboardCopy, Check } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { PixelClipboard, PixelCheck } from "@/components/retro/icons/PixelIcons";
 
 export type TokenRow = {
   name: string;
@@ -102,9 +102,9 @@ export const DesignTokensTable = ({ title = "Design Tokens", tokens }: DesignTok
                                   className="inline-flex h-8 w-8 items-center justify-center rounded-md border bg-card text-card-foreground shadow-sm transition-smooth hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                                 >
                                   {isCopied ? (
-                                    <Check className="h-4 w-4" aria-hidden />
+                                    <PixelCheck className="h-4 w-4" aria-hidden />
                                   ) : (
-                                    <ClipboardCopy className="h-4 w-4" aria-hidden />
+                                    <PixelClipboard className="h-4 w-4" aria-hidden />
                                   )}
                                 </button>
                               </TooltipTrigger>

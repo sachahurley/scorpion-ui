@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip"; // for non-retro fallback provider
 import RetroTooltip, { RetroTooltipContent, RetroTooltipTrigger, RetroTooltipProvider } from "@/components/retro/display/Tooltip";
 import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
-import { Info } from "lucide-react";
+import { useAppTheme } from "@/theme/ThemeProvider";
+import { PixelInfo } from "@/components/retro/icons/PixelIcons";
 
-const TooltipDocsPage = () => {
+const TooltipDocsPage = () => { const { theme } = useAppTheme();
   useEffect(() => { document.title = "Scorpion UI · Components · Tooltip"; }, []);
 
   const tokens: TokenRow[] = [
@@ -100,7 +101,7 @@ const TooltipDocsPage = () => {
             <div className="flex flex-wrap gap-4">
               <RetroTooltip>
                 <RetroTooltipTrigger asChild>
-                  <Button variant="outline"><Info className="mr-2 h-4 w-4" /> With icon</Button>
+<Button variant="outline">{theme === 'retro' ? <PixelInfo className="mr-2 h-4 w-4" /> : null} With icon</Button>
                 </RetroTooltipTrigger>
                 <RetroTooltipContent>Extra info with icon trigger.</RetroTooltipContent>
               </RetroTooltip>

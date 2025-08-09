@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Rocket, Sparkles, Shield } from "lucide-react";
 import RetroWordmark from "@/components/retro/RetroWordmark";
 import { useAppTheme } from "@/theme/ThemeProvider";
+import { PixelLightning, PixelSparkles, PixelAccessibility } from "@/components/retro/icons/PixelIcons";
 
 const Index = () => {
   const { theme } = useAppTheme();
@@ -54,7 +55,16 @@ const Index = () => {
       <section aria-labelledby="features" className="grid gap-6 md:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><Rocket /> Fast</CardTitle>
+            <div className="mb-2">
+              <span className="inline-block" aria-hidden>
+                {theme === "retro" ? (
+                  <PixelLightning className="text-foreground" />
+                ) : (
+                  <Rocket />
+                )}
+              </span>
+            </div>
+            <CardTitle>Fast</CardTitle>
             <CardDescription>Optimized for speed and clarity.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -64,7 +74,16 @@ const Index = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><Sparkles /> Beautiful</CardTitle>
+            <div className="mb-2">
+              <span className="inline-block" aria-hidden>
+                {theme === "retro" ? (
+                  <PixelSparkles className="text-foreground" />
+                ) : (
+                  <Sparkles />
+                )}
+              </span>
+            </div>
+            <CardTitle>Beautiful</CardTitle>
             <CardDescription>Thoughtful defaults and polish.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -74,7 +93,16 @@ const Index = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><Shield /> Accessible</CardTitle>
+            <div className="mb-2">
+              <span className="inline-block" aria-hidden>
+                {theme === "retro" ? (
+                  <PixelAccessibility className="text-foreground" />
+                ) : (
+                  <Shield />
+                )}
+              </span>
+            </div>
+            <CardTitle>Accessible</CardTitle>
             <CardDescription>Keyboard and screen reader friendly.</CardDescription>
           </CardHeader>
           <CardContent>

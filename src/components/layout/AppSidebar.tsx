@@ -2,6 +2,8 @@ import { Home, LayoutGrid, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useMemo } from "react";
+import { useAppTheme } from "@/theme/ThemeProvider";
+import { PixelHome, PixelGrid, PixelChevronDown } from "@/components/retro/icons/PixelIcons";
 
 interface AppSidebarProps {
   open: boolean;
@@ -13,6 +15,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
   const path = location.pathname;
   const initiallyOpen = useMemo(() => path.startsWith("/components"), [path]);
   const [groupOpen, setGroupOpen] = useState(initiallyOpen);
+  const { theme } = useAppTheme();
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
     cn(
@@ -40,7 +43,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
       >
         <nav className="p-4 pt-4 space-y-1">
           <NavLink to="/" end className={linkCls}>
-            <Home />
+            {theme === "retro" ? <PixelHome /> : <Home />}
             <span>Home</span>
           </NavLink>
 
@@ -56,10 +59,14 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
               aria-expanded={groupOpen}
             >
               <span className="flex items-center gap-3">
-                <LayoutGrid />
+                {theme === "retro" ? <PixelGrid /> : <LayoutGrid />}
                 Components
               </span>
-              <ChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} />
+{theme === "retro" ? (
+                  <PixelChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} />
+                ) : (
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} />
+                )}
             </button>
             {groupOpen && (
               <div className="mt-1 space-y-1">

@@ -93,3 +93,11 @@
 @media (prefers-reduced-motion: reduce) {
   [data-theme="retro"] .retro-scorpion-fire { animation: none !important; }
 }
+
+/* Small scorpion badge for header (static color) */
+[data-theme="retro"] .retro-scorpion-badge {
+  background: currentColor;
+  -webkit-mask: url('/lovable-uploads/83ca5650-368f-4328-afd6-b60a25cc0f91.png') center/contain no-repeat;
+  mask: url('/lovable-uploads/83ca5650-368f-4328-afd6-b60a25cc0f91.png') center/contain no-repeat;
+  display: inline-block;
+}
