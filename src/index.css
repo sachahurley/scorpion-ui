@@ -63,6 +63,15 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
     
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Button size tokens (default theme) */
+    --btn-h: 2.5rem; /* 40px */
+    --btn-px: 1rem;  /* 16px */
+    --btn-py: 0.5rem;/* 8px  */
+    --btn-sm-h: 2.25rem; /* 36px */
+    --btn-sm-px: 0.75rem; /* 12px */
+    --btn-lg-h: 2.75rem; /* 44px */
+    --btn-lg-px: 1.5rem;  /* 24px */
   }
 
   .dark {
@@ -116,105 +125,14 @@ All colors MUST be HSL.
   /* 8-bit inspired palette and shapes using semantic tokens */
   --background: 48 100% 98%;
   --foreground: 222.2 84% 4.9%;
-
-  --card: 48 100% 98%;
-  --card-foreground: 222.2 84% 4.9%;
-
-  --popover: 48 100% 98%;
-  --popover-foreground: 222.2 84% 4.9%;
-
-  /* Primary set to Tailwind yellow-900 (#713f12) as HSL */
-  --primary: 12 6% 15%;
-  --primary-foreground: 48 100% 98%;
-
-  --secondary: 48 100% 92%;
-  --secondary-foreground: 222.2 84% 4.9%;
-
-  --muted: 48 60% 90%;
-  --muted-foreground: 220 20% 40%;
-
-  --accent: 48 100% 92%;
-  --accent-foreground: 222.2 84% 4.9%;
-
-  --destructive: 0 80% 50%;
-  --destructive-foreground: 48 100% 98%;
-
-  --border: 220 25% 75%;
-  --input: 220 25% 75%;
-  --ring: 12 6% 15%;
-
-  /* Base control radius (buttons, inputs, checkboxes) */
-  --radius: 0.5rem; /* 8px */
-
-  /* Brand tokens (align to primary) */
-  --brand: 12 6% 15%;
-  --brand-foreground: 48 100% 98%;
-  --brand-glow: 12 6% 22%;
-  --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
-  --shadow-elevated: 0 0 0 2px hsl(var(--border));
-
-  /* Elevation (retro only): layered shadows using brand hue */
-  --elevation-1: 0 1px 1px 0 hsl(var(--brand) / 0.08);
-  --elevation-2: 0 2px 4px -2px hsl(var(--brand) / 0.12), 0 1px 2px 0 hsl(var(--brand) / 0.06);
-  --elevation-3: 0 8px 16px -6px hsl(var(--brand) / 0.18), 0 2px 6px -2px hsl(var(--brand) / 0.10);
-  --elevation-4: 0 12px 24px -8px hsl(var(--brand) / 0.22), 0 4px 10px -2px hsl(var(--brand) / 0.12);
-  --elevation-5: 0 18px 36px -10px hsl(var(--brand) / 0.28), 0 8px 18px -4px hsl(var(--brand) / 0.16);
-  --elevation-6: 0 24px 48px -12px hsl(var(--brand) / 0.34), 0 12px 22px -6px hsl(var(--brand) / 0.2);
-
-  /* Spacing tokens (retro only) */
-  --space-0: 0rem;
-  --space-4: 0.25rem;
-  --space-8: 0.5rem;
-  --space-12: 0.75rem;
-  --space-16: 1rem;
-  --space-20: 1.25rem;
-  --space-24: 1.5rem;
-  --space-32: 2rem;
-  --space-40: 2.5rem;
-  --space-48: 3rem;
-  --space-56: 3.5rem;
-  --space-64: 4rem;
-  --space-80: 5rem;
-  --space-96: 6rem;
-  --space-112: 7rem;
-  --space-128: 8rem;
-  --space-144: 9rem;
-  --space-160: 10rem;
-  --space-192: 12rem;
-  --space-224: 14rem;
-  --space-256: 16rem;
-
-  /* Feedback tokens (retro only) */
-  --feedback-success: 142 70% 35%; /* green-600 */
-  --feedback-warning: 45 93% 47%; /* amber-500 */
-  --feedback-error: 0 84% 60%;    /* red-500 */
-  --feedback-info: 200 98% 39%;   /* sky-600 */
-  --feedback-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --feedback-duration: 0.25s;
-
-  /* Logo animation colors (retro) */
-  --logo-anim-mid: 0 70% 40%;
-  --fire-yellow: 48 96% 60%;
-  --fire-orange: 30 96% 55%;
-  --fire-red: 0 80% 50%;
-  /* Sidebar overrides (retro) */
-  --sidebar-background: 48 100% 98%;
-  --sidebar-accent: 54 96% 88%;
-  /* Modular type scale (retro only) */
-  --font-size-2b: 0.75rem;  /* 12px */
-  --font-size-1b: 0.875rem; /* 14px */
-  --font-size-0: 1rem;      /* 16px */
-  --font-size-1: 1.125rem;  /* 18px */
-  --font-size-2: 1.265rem;  /* 20.24px */
-  --font-size-3: 1.424rem;  /* 22.78px */
-  --font-size-4: 1.602rem;  /* 25.63px */
-  --font-size-5: 1.802rem;  /* 28.83px */
-  --font-size-6: 2.027rem;  /* 32.43px */
-  --font-size-7: 2.281rem;  /* 36.5px */
-
-  --line-height-tight: 1.1;
-  --line-height-normal: 1.5;
+  ...
   --line-height-relaxed: 1.8;
+
+  /* Retro button size overrides (20% smaller/larger) */
+  --btn-sm-h: 2rem;  /* 32px */
+  --btn-sm-px: 0.75rem; /* 12px */
+  --btn-lg-h: 3rem;  /* 48px */
+  --btn-lg-px: 1.75rem; /* 28px */
 }
 
 /* Retro dark mode overrides (retro-only) */

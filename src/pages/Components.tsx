@@ -115,6 +115,9 @@ const ComponentsPage = () => {
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
+            <div className="pt-2">
+              <Button asChild size="sm"><a href="/components/navigation">View Details</a></Button>
+            </div>
           </CardContent>
         </Card>
 
@@ -153,6 +156,12 @@ const ComponentsPage = () => {
               </DropdownMenu>
             </div>
           </CardContent>
+          <div className="px-6 pb-6">
+            <div className="flex flex-wrap gap-2">
+              <Button asChild size="sm"><a href="/components/buttons">Explore Buttons</a></Button>
+              <Button asChild size="sm" variant="outline"><a href="/components/tooltip">Tooltips</a></Button>
+            </div>
+          </div>
         </Card>
       </section>
 
