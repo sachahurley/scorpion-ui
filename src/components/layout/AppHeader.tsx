@@ -22,11 +22,8 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
           <Button variant="outline" size="icon" aria-label="Toggle navigation" onClick={onToggleSidebar} className="md:hidden">
             <Menu />
           </Button>
-          <a href="/" className="font-semibold tracking-tight text-lg flex items-center gap-2">
-            {theme === "retro" && (
-              <span aria-hidden className="retro-scorpion-badge inline-block h-6 w-6 md:h-8 md:w-8" />
-            )}
-            <span>Scorpion UI</span>
+          <a href="/" className="font-semibold tracking-tight text-lg">
+            Scorpion UI
           </a>
         </div>
 

@@ -17,11 +17,6 @@ const Index = () => {
 {theme === "retro" ? (
             <>
               <h1 className="sr-only">Scorpion UI</h1>
-              <span
-                role="img"
-                aria-label="8-bit pixel art scorpion logo"
-                className="retro-scorpion-fire mx-auto mb-4 block h-20 w-20 md:h-24 md:w-24"
-              />
               <RetroWordmark className="w-full max-w-[520px] md:max-w-[640px] text-brand-foreground/90" />
             </>
           ) : (
@@ -83,8 +78,8 @@ const Index = () => {
                 )}
               </span>
             </div>
-            <CardTitle>Beautiful</CardTitle>
-            <CardDescription>Thoughtful defaults and polish.</CardDescription>
+            <CardTitle>Retro</CardTitle>
+            <CardDescription>Nostalgic 8-bit aesthetics, pixel-perfect UI, and vintage game vibes.</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">Gradient accents, smooth motion, and accessible components out of the box.</p>

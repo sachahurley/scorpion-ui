@@ -37,7 +37,8 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
 
       <aside
         className={cn(
-          "fixed z-40 inset-y-0 left-0 w-64 border-r bg-sidebar transition-transform md:translate-x-0 md:static md:z-auto",
+          "fixed z-40 inset-y-0 left-0 w-64 border-r bg-sidebar transition-transform md:translate-x-0",
+          theme === "retro" ? "md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:overflow-y-auto md:z-auto" : "md:static md:z-auto",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
