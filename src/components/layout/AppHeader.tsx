@@ -30,6 +30,9 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
         </div>
 
         <div className="flex items-center gap-2">
+          <Button variant="outline" asChild>
+            <a href="/components">Components</a>
+          </Button>
           <Button variant="outline" size="icon" aria-label="Notifications">
             <Bell />
           </Button>
