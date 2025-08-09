@@ -184,6 +184,14 @@ All colors MUST be HSL.
   --space-224: 14rem;
   --space-256: 16rem;
 
+  /* Feedback tokens (retro only) */
+  --feedback-success: 142 70% 35%; /* green-600 */
+  --feedback-warning: 45 93% 47%; /* amber-500 */
+  --feedback-error: 0 84% 60%;    /* red-500 */
+  --feedback-info: 200 98% 39%;   /* sky-600 */
+  --feedback-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --feedback-duration: 0.25s;
+
   /* Logo animation colors (retro) */
   --logo-anim-mid: 0 70% 40%;
   --fire-yellow: 48 96% 60%;
@@ -356,10 +364,17 @@ All colors MUST be HSL.
     color: hsl(var(--muted-foreground));
     animation: retro-logo-color 3.5s ease-in-out infinite;
   }
+  /* Pixel spinner animation */
+  @keyframes pixel-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-pixel-spin { animation: pixel-rotate 1s steps(4) infinite; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   [data-theme="retro"] .retro-logo-animate { animation: none; }
+  .animate-pixel-spin { animation: none !important; }
 }
 
 @keyframes retro-logo-color {

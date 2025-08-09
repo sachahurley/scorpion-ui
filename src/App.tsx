@@ -19,6 +19,7 @@ import { ThemeProvider } from "./theme/ThemeProvider";
 import TooltipDocsPage from "./pages/components/Tooltip";
 import ElevationDocsPage from "./pages/components/Elevation";
 import SpacingDocsPage from "./pages/components/Spacing";
+import FeedbackPage from "./pages/components/Feedback";
 
 const queryClient = new QueryClient();
 
