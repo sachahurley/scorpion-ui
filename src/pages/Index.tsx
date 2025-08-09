@@ -13,11 +13,11 @@ const Index = () => {
   return (
     <main>
       <section className="mb-8">
-        <div className="rounded-2xl bg-gradient-primary p-8 shadow-elevated">
-{theme === "retro" ? (
+        <div className="rounded-2xl bg-gradient-primary p-5 sm:p-8 shadow-elevated">
+          {theme === "retro" ? (
             <>
               <h1 className="sr-only">Scorpion UI</h1>
-              <RetroWordmark className="w-full max-w-[520px] md:max-w-[640px] text-brand-foreground/90" />
+              <RetroWordmark className="w-full max-w-[360px] sm:max-w-[520px] md:max-w-[640px] text-brand-foreground/90" />
             </>
           ) : (
             <h1 className="text-3xl md:text-4xl font-bold text-brand-foreground tracking-tight">
@@ -47,7 +47,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section aria-labelledby="features" className="grid gap-6 md:grid-cols-3">
+      <section aria-labelledby="features" className="grid gap-6 md:grid-cols-3 component-grid">
         <Card>
           <CardHeader>
             <div className="mb-2">
@@ -106,7 +106,7 @@ const Index = () => {
         </Card>
       </section>
 
-      <section aria-labelledby="try" className="mt-8 grid gap-6 md:grid-cols-3">
+      <section aria-labelledby="try" className="mt-8 grid component-grid">
         <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Try the essentials</CardTitle>

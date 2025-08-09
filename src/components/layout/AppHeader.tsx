@@ -19,7 +19,7 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
         theme === "retro" ? "w-full px-4" : "container"
       )}> {/* 16px sides in retro */}
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="icon" aria-label="Toggle navigation" onClick={onToggleSidebar} className="md:hidden">
+          <Button variant="outline" size="icon" aria-label="Toggle navigation" onClick={onToggleSidebar} className="md:hidden aspect-square">
             <Menu />
           </Button>
           <a href="/" className="font-semibold tracking-tight text-lg">
@@ -27,7 +27,8 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
           </a>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className={cn("items-center gap-2", theme === "retro" ? "hidden md:flex" : "flex")}
+        >
           {theme === "retro" && (
             <div className="flex items-center gap-2 pr-1" aria-label="Retro dark mode toggle">
               <Sun className={cn("h-4 w-4", retroDark ? "opacity-40" : "opacity-100")} />

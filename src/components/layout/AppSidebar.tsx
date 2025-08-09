@@ -1,9 +1,11 @@
-import { Home, LayoutGrid, ChevronDown } from "lucide-react";
+import { Home, LayoutGrid, ChevronDown, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { useAppTheme } from "@/theme/ThemeProvider";
 import { PixelHome, PixelGrid, PixelChevronDown } from "@/components/retro/icons/PixelIcons";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 
 interface AppSidebarProps {
   open: boolean;
@@ -15,7 +17,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
   const path = location.pathname;
   const initiallyOpen = useMemo(() => path.startsWith("/components"), [path]);
   const [groupOpen, setGroupOpen] = useState(initiallyOpen);
-  const { theme } = useAppTheme();
+  const { theme, retroDark, setRetroDark, toggleTheme } = useAppTheme();
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
     cn(
@@ -42,7 +44,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <nav className="p-4 pt-4 space-y-1">
+        <nav className={cn("p-4 pt-4 space-y-1", theme === "retro" ? "pb-24 md:pb-4" : undefined)}>
           <NavLink to="/" end className={linkCls}>
             {theme === "retro" ? <PixelHome /> : <Home />}
             <span>Home</span>
@@ -96,6 +98,21 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
             )}
           </div>
         </nav>
+
+        {theme === "retro" && (
+          <div className="absolute bottom-0 left-0 right-0 border-t p-4 bg-sidebar md:hidden">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2" aria-label="Retro dark mode toggle">
+                <Sun className={cn("h-4 w-4", retroDark ? "opacity-40" : "opacity-100")} />
+                <Switch checked={retroDark} onCheckedChange={(v) => setRetroDark(v)} aria-label="Toggle dark mode" />
+                <Moon className={cn("h-4 w-4", retroDark ? "opacity-100" : "opacity-40")} />
+              </div>
+              <Button onClick={toggleTheme} variant="outline" size="sm">
+                Switch to Modern
+              </Button>
+            </div>
+          </div>
+        )}
       </aside>
     </>
   );

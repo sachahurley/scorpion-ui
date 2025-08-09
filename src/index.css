@@ -398,3 +398,30 @@ All colors MUST be HSL.
   0%, 100% { color: hsl(var(--muted-foreground)); }
   50% { color: hsl(var(--logo-anim-mid)); }
 }
+
+/* Retro-only responsive grid utilities */
+@layer utilities {
+  /* Mobile: Single column, 16px gaps and margins implied by layout */
+  @media (max-width: 768px) {
+    [data-theme="retro"] .component-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  /* Tablet: 1 column with wider gaps (can be 2x1 via explicit card spans) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    [data-theme="retro"] .component-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+  /* Desktop: auto-fit into 300px min cards for 2-3 columns */
+  @media (min-width: 1024px) {
+    [data-theme="retro"] .component-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+  }
+}
+

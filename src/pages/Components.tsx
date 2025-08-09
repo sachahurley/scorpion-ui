@@ -36,7 +36,7 @@ const ComponentsPage = () => {
 
   return (
     <main className="space-y-8">
-      <header aria-label="Breadcrumb" className="flex items-center justify-between gap-4">
+      <header aria-label="Breadcrumb" className="flex flex-wrap items-center justify-between gap-4">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -48,7 +48,7 @@ const ComponentsPage = () => {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 basis-full sm:basis-auto sm:ml-auto mt-2 sm:mt-0">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" aria-haspopup="menu">Actions <ChevronDown /></Button>
@@ -83,7 +83,7 @@ const ComponentsPage = () => {
 
       <h1 className="text-2xl font-bold tracking-tight">UI Components Demo</h1>
 
-      <section aria-labelledby="nav" className="grid gap-6 md:grid-cols-2">
+      <section aria-labelledby="nav" className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle id="nav">Navigation</CardTitle>
@@ -165,7 +165,7 @@ const ComponentsPage = () => {
         </Card>
       </section>
 
-      <section aria-labelledby="forms" className="grid gap-6 md:grid-cols-2">
+      <section aria-labelledby="forms" className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle id="forms">Forms</CardTitle>
@@ -233,7 +233,7 @@ const ComponentsPage = () => {
         </Card>
       </section>
 
-      <section aria-labelledby="data" className="grid gap-6 md:grid-cols-2">
+      <section aria-labelledby="data" className="grid gap-6 md:grid-cols-2 component-grid">
         <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle id="data">Data</CardTitle>
@@ -266,7 +266,7 @@ const ComponentsPage = () => {
         </Card>
       </section>
 
-      <section aria-labelledby="layout" className="grid gap-6 md:grid-cols-2">
+      <section aria-labelledby="layout" className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle id="layout">Layout</CardTitle>
@@ -287,6 +287,34 @@ const ComponentsPage = () => {
             </Dialog>
           </CardContent>
         </Card>
+      </section>
+      
+      <section aria-labelledby="catalog" className="grid gap-6 md:grid-cols-3 component-grid">
+        <h2 id="catalog" className="sr-only">Component Catalog</h2>
+        {[
+          { title: "Buttons", desc: "All button styles and sizes", href: "/components/buttons" },
+          { title: "Forms", desc: "Inputs, selects, and more", href: "/components/forms" },
+          { title: "Cards", desc: "Card layouts and content", href: "/components/cards" },
+          { title: "Modals", desc: "Dialogs, Sheets, Drawers", href: "/components/modals" },
+          { title: "Type", desc: "Typography scale and styles", href: "/components/type" },
+          { title: "Pickers", desc: "Dates and time inputs", href: "/components/pickers" },
+          { title: "Progress", desc: "Progress bars and more", href: "/components/progress" },
+          { title: "Tooltip", desc: "Tooltips and helpers", href: "/components/tooltip" },
+          { title: "Elevation", desc: "Shadows and depth", href: "/components/elevation" },
+          { title: "Spacing", desc: "Spacing and rhythm", href: "/components/spacing" },
+          { title: "Feedback", desc: "Alerts, toasts, skeletons", href: "/components/feedback" },
+          { title: "Navigation", desc: "Breadcrumbs, tabs, pagination", href: "/components/navigation" },
+        ].map((c) => (
+          <Card key={c.title}>
+            <CardHeader>
+              <CardTitle>{c.title}</CardTitle>
+              <CardDescription>{c.desc}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button asChild size="sm"><a href={c.href}>View Component</a></Button>
+            </CardContent>
+          </Card>
+        ))}
       </section>
     </main>
   );

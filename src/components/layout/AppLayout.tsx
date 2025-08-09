@@ -2,6 +2,8 @@ import { useState, type ReactNode } from "react";
 import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
+import { useAppTheme } from "@/theme/ThemeProvider";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -10,6 +12,7 @@ interface AppLayoutProps {
 const AppLayout = ({ children }: AppLayoutProps) => {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
+  const { theme } = useAppTheme();
 
   const toggle = () => setOpen((o) => !o);
   const close = () => setOpen(false);
@@ -23,7 +26,8 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
       {/* Main content */}
       <main className="bg-background">
-        <div className="container py-8">
+        <div className={cn(theme === "retro" ? "px-4 pt-4 md:container md:px-0" : "container", "py-8")}
+        >
           {children}
         </div>
       </main>
