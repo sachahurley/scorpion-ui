@@ -10,6 +10,7 @@ import ButtonsPage from "./pages/components/Buttons";
 import FormsPage from "./pages/components/Forms";
 import CardsPage from "./pages/components/Cards";
 import ModalsPage from "./pages/components/Modals";
+import TypePage from "./pages/components/Type";
 import NotFound from "./pages/NotFound";
 import AppLayout from "./components/layout/AppLayout";
 import { ThemeProvider } from "./theme/ThemeProvider";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/components/forms" element={<FormsPage />} />
           <Route path="/components/cards" element={<CardsPage />} />
           <Route path="/components/modals" element={<ModalsPage />} />
+          <Route path="/components/type" element={<TypePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

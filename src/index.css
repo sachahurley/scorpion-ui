@@ -123,7 +123,8 @@ All colors MUST be HSL.
   --popover: 48 100% 98%;
   --popover-foreground: 222.2 84% 4.9%;
 
-  --primary: 200 100% 40%;
+  /* Primary set to Tailwind yellow-900 (#713f12) as HSL */
+  --primary: 28 72% 26%;
   --primary-foreground: 48 100% 98%;
 
   --secondary: 48 100% 92%;
@@ -140,24 +141,46 @@ All colors MUST be HSL.
 
   --border: 220 25% 75%;
   --input: 220 25% 75%;
-  --ring: 200 100% 40%;
+  --ring: 28 72% 26%;
 
-  /* Squared corners for pixel look */
-  --radius: 0.125rem;
+  /* Base control radius (buttons, inputs, checkboxes) */
+  --radius: 0.5rem; /* 8px */
 
-  /* Brand tokens */
-  --brand: 200 100% 45%;
+  /* Brand tokens (align to primary) */
+  --brand: 28 72% 26%;
   --brand-foreground: 48 100% 98%;
-  --brand-glow: 200 100% 55%;
+  --brand-glow: 28 72% 32%;
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
+
+  /* Modular type scale (retro only) */
+  --font-size-2b: 0.75rem;  /* 12px */
+  --font-size-1b: 0.875rem; /* 14px */
+  --font-size-0: 1rem;      /* 16px */
+  --font-size-1: 1.125rem;  /* 18px */
+  --font-size-2: 1.265rem;  /* 20.24px */
+  --font-size-3: 1.424rem;  /* 22.78px */
+  --font-size-4: 1.602rem;  /* 25.63px */
+  --font-size-5: 1.802rem;  /* 28.83px */
+  --font-size-6: 2.027rem;  /* 32.43px */
+  --font-size-7: 2.281rem;  /* 36.5px */
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.8;
 }
 
 /* Typography override for retro theme */
 .theme-retro body,
 [data-theme="retro"] body {
   font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: normal;
 }
+
+/* Retro-only radius refinements */
+[data-theme="retro"] .rounded-md, .theme-retro .rounded-md { border-radius: 0.5rem; } /* 8px */
+[data-theme="retro"] .rounded-sm, .theme-retro .rounded-sm { border-radius: 0.5rem; } /* 8px - checkboxes */
+[data-theme="retro"] .rounded-lg, .theme-retro .rounded-lg { border-radius: 1rem; }   /* 16px - cards */
 
 @layer base {
   * {
@@ -173,4 +196,15 @@ All colors MUST be HSL.
   .bg-gradient-primary { background-image: var(--gradient-primary); }
   .shadow-elevated { box-shadow: var(--shadow-elevated); }
   .transition-smooth { transition: var(--transition-smooth); }
+}
+
+@layer components {
+  /* Retro typography helpers (use CSS vars; letter-spacing normalized by theme) */
+  .type-theme { font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; letter-spacing: normal; }
+  .type-h1 { font-size: var(--font-size-7); line-height: var(--line-height-tight); font-weight: 600; }
+  .type-h2 { font-size: var(--font-size-5); line-height: var(--line-height-tight); font-weight: 600; }
+  .type-h3 { font-size: var(--font-size-4); line-height: var(--line-height-normal); font-weight: 600; }
+  .type-body { font-size: var(--font-size-0); line-height: var(--line-height-normal); font-weight: 400; }
+  .type-small { font-size: var(--font-size-1b); line-height: var(--line-height-normal); font-weight: 400; }
+  .type-large { font-size: var(--font-size-2); line-height: var(--line-height-relaxed); font-weight: 400; }
 }
