@@ -3,11 +3,22 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
 
 const NavigationPage = () => {
   useEffect(() => {
     document.title = "Scorpion UI · Components · Navigation";
   }, []);
+
+  const tokens: TokenRow[] = [
+    { name: "Tabs List Background", value: "hsl(var(--muted))" },
+    { name: "Active Tab Background", value: "hsl(var(--background))" },
+    { name: "Link/Text Color", value: "hsl(var(--foreground))" },
+    { name: "Hover Text Color", value: "hsl(var(--accent-foreground))" },
+    { name: "Divider/Border", value: "hsl(var(--border))" },
+    { name: "Focus Ring", value: "hsl(var(--ring))" },
+    { name: "Border Radius", value: "var(--radius)" },
+  ];
 
   return (
     <main className="space-y-6">
@@ -68,6 +79,8 @@ const NavigationPage = () => {
           </CardContent>
         </Card>
       </section>
+
+      <DesignTokensTable tokens={tokens} />
     </main>
   );
 };

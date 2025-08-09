@@ -1,11 +1,21 @@
 import { useEffect } from "react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
 
 const CardsPage = () => {
   useEffect(() => {
     document.title = "Scorpion UI · Components · Cards";
   }, []);
+
+  const tokens: TokenRow[] = [
+    { name: "Card Background", value: "hsl(var(--card))" },
+    { name: "Card Text", value: "hsl(var(--card-foreground))" },
+    { name: "Border Color", value: "hsl(var(--border))" },
+    { name: "Border Radius", value: "var(--radius)" },
+    { name: "Shadow", value: "var(--shadow-elevated)" },
+    { name: "Card Padding", value: "1rem - 1.5rem (section dependent)" },
+  ];
 
   return (
     <main className="space-y-6">
@@ -43,6 +53,8 @@ const CardsPage = () => {
           </CardContent>
         </Card>
       </section>
+
+      <DesignTokensTable tokens={tokens} />
     </main>
   );
 };

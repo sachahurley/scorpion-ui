@@ -4,11 +4,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
 
 const ModalsPage = () => {
   useEffect(() => {
     document.title = "Scorpion UI · Components · Modals";
   }, []);
+
+  const tokens: TokenRow[] = [
+    { name: "Modal Background", value: "hsl(var(--popover))" },
+    { name: "Modal Text", value: "hsl(var(--popover-foreground))" },
+    { name: "Border Color", value: "hsl(var(--border))" },
+    { name: "Overlay/Shadow", value: "var(--shadow-elevated)" },
+    { name: "Border Radius", value: "var(--radius)" },
+  ];
 
   return (
     <main className="space-y-6">
@@ -66,6 +75,8 @@ const ModalsPage = () => {
           </CardContent>
         </Card>
       </section>
+
+      <DesignTokensTable tokens={tokens} />
     </main>
   );
 };

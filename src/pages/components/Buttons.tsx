@@ -2,11 +2,23 @@ import { useEffect } from "react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
 
 const ButtonsPage = () => {
   useEffect(() => {
     document.title = "Scorpion UI · Components · Buttons";
   }, []);
+
+  const tokens: TokenRow[] = [
+    { name: "Primary Background", value: "hsl(var(--primary))" },
+    { name: "Primary Text", value: "hsl(var(--primary-foreground))" },
+    { name: "Border Radius", value: "var(--radius)" },
+    { name: "Button Padding", value: "0.5rem 0.75rem (size dependent)" },
+    { name: "Focus Ring", value: "hsl(var(--ring))" },
+    { name: "Hover Background (secondary)", value: "hsl(var(--secondary))" },
+    { name: "Disabled Opacity", value: "50%" },
+    { name: "Text Weight", value: "500" },
+  ];
 
   return (
     <main className="space-y-6">
@@ -40,6 +52,8 @@ const ButtonsPage = () => {
           </CardContent>
         </Card>
       </section>
+
+      <DesignTokensTable tokens={tokens} />
     </main>
   );
 };

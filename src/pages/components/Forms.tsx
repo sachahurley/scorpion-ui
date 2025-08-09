@@ -6,11 +6,22 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
 
 const FormsPage = () => {
   useEffect(() => {
     document.title = "Scorpion UI · Components · Forms";
   }, []);
+
+  const tokens: TokenRow[] = [
+    { name: "Input Background", value: "hsl(var(--background))" },
+    { name: "Input Border", value: "hsl(var(--input))" },
+    { name: "Placeholder Color", value: "hsl(var(--muted-foreground))" },
+    { name: "Focus Ring", value: "hsl(var(--ring))" },
+    { name: "Control Radius", value: "var(--radius)" },
+    { name: "Field Padding", value: "0.5rem 0.75rem" },
+    { name: "Label Weight", value: "500" },
+  ];
 
   return (
     <main className="space-y-6">
@@ -72,6 +83,8 @@ const FormsPage = () => {
           </CardContent>
         </Card>
       </section>
+
+      <DesignTokensTable tokens={tokens} />
     </main>
   );
 };
