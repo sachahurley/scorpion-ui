@@ -5,8 +5,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ComponentsPage from "./pages/Components";
+import NavigationPage from "./pages/components/Navigation";
+import ButtonsPage from "./pages/components/Buttons";
+import FormsPage from "./pages/components/Forms";
+import CardsPage from "./pages/components/Cards";
+import ModalsPage from "./pages/components/Modals";
 import NotFound from "./pages/NotFound";
 import AppLayout from "./components/layout/AppLayout";
+import { ThemeProvider } from "./theme/ThemeProvider";
 
 const queryClient = new QueryClient();
 
@@ -15,16 +21,23 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <AppLayout>
+      <ThemeProvider>
+        <BrowserRouter>
+          <AppLayout>
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/components" element={<ComponentsPage />} />
+          <Route path="/components/navigation" element={<NavigationPage />} />
+          <Route path="/components/buttons" element={<ButtonsPage />} />
+          <Route path="/components/forms" element={<FormsPage />} />
+          <Route path="/components/cards" element={<CardsPage />} />
+          <Route path="/components/modals" element={<ModalsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
-        </AppLayout>
-      </BrowserRouter>
+          </AppLayout>
+        </BrowserRouter>
+      </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

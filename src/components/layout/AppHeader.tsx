@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useAppTheme } from "@/theme/ThemeProvider";
 
 interface AppHeaderProps {
   onToggleSidebar: () => void;
@@ -8,6 +9,8 @@ interface AppHeaderProps {
 }
 
 const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
+  const { theme, toggleTheme } = useAppTheme();
+
   return (
     <header className={cn("sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60", className)}>
       <div className="container flex h-16 items-center justify-between gap-4">
@@ -20,7 +23,11 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
           </a>
         </div>
 
-
+        <div className="flex items-center gap-2">
+          <Button onClick={toggleTheme} variant="outline">
+            {theme === "retro" ? "Switch to Modern" : "Switch to Retro"}
+          </Button>
+        </div>
       </div>
     </header>
   );
