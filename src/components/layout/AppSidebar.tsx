@@ -1,6 +1,6 @@
-import { Home, LayoutGrid, Settings } from "lucide-react";
+import { Home, LayoutGrid } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router-dom";
 
 interface AppSidebarProps {
   open: boolean;
@@ -8,9 +8,8 @@ interface AppSidebarProps {
 }
 
 const navItems = [
-  { label: "Dashboard", href: "/", icon: Home, active: true },
-  { label: "Projects", href: "#", icon: LayoutGrid },
-  { label: "Settings", href: "#", icon: Settings },
+  { label: "Home", href: "/", icon: Home },
+  { label: "Components", href: "/components", icon: LayoutGrid },
 ];
 
 const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
@@ -36,23 +35,23 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
           <span className="font-semibold">Navigation</span>
         </div>
         <nav className="p-3 space-y-1">
-          {navItems.map(({ label, href, icon: Icon, active }) => (
-            <a
+          {navItems.map(({ label, href, icon: Icon }) => (
+            <NavLink
               key={label}
-              href={href}
-              className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand",
-                active ? "bg-sidebar-accent text-foreground" : "hover:bg-accent hover:text-accent-foreground"
-              )}
+              to={href}
+              end
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand",
+                  isActive ? "bg-sidebar-accent text-foreground" : "hover:bg-accent hover:text-accent-foreground"
+                )
+              }
             >
               <Icon className="text-muted-foreground" />
               <span>{label}</span>
-            </a>
+            </NavLink>
           ))}
         </nav>
-        <div className="mt-auto p-3 border-t hidden md:block">
-          <Button variant="outline" className="w-full">Upgrade</Button>
-        </div>
       </aside>
     </>
   );
