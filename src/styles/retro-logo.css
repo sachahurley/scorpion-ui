@@ -65,3 +65,31 @@
   90%       { stop-color: hsl(var(--fire-red)); }
   100%      { stop-color: currentColor; }
 }
+
+/* Scorpion fire animation using CSS mask over background gradient */
+[data-theme="retro"] .retro-scorpion-fire {
+  display: inline-block;
+  /* Start with base text/foreground color and heat upwards */
+  background: linear-gradient(
+    0deg,
+    hsl(var(--muted-foreground)) 0%,
+    hsl(var(--fire-yellow)) 35%,
+    hsl(var(--fire-orange)) 65%,
+    hsl(var(--fire-red)) 100%
+  );
+  background-size: 100% 300%;
+  background-position: center 100%;
+  -webkit-mask: url('/lovable-uploads/83ca5650-368f-4328-afd6-b60a25cc0f91.png') center/contain no-repeat;
+  mask: url('/lovable-uploads/83ca5650-368f-4328-afd6-b60a25cc0f91.png') center/contain no-repeat;
+  animation: scorpion-fire 7s ease-in-out infinite;
+}
+
+@keyframes scorpion-fire {
+  0% { background-position: center 100%; }
+  50% { background-position: center 0%; }
+  100% { background-position: center 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="retro"] .retro-scorpion-fire { animation: none !important; }
+}
