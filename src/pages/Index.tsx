@@ -26,14 +26,23 @@ const Index = () => {
           <p className="mt-2 max-w-2xl text-brand-foreground/90">
             A clean, modern layout built with Tailwind CSS and shadcn/ui. Explore the components and start building.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button variant="hero" asChild>
-              <a href="/components">Get Started</a>
-            </Button>
-            <Button variant="outline" asChild>
-              <a href="/components">Components</a>
-            </Button>
-          </div>
+          {theme === "retro" ? (
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button variant="hero" asChild>
+                <a href="/components">Components</a>
+              </Button>
+            </div>
+          ) : (
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button variant="hero" asChild>
+                <a href="/components">Get Started</a>
+              </Button>
+              <Button variant="outline" asChild>
+                <a href="/components">Components</a>
+              </Button>
+            </div>
+          )}
+
         </div>
       </section>
 
