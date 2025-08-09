@@ -155,7 +155,7 @@ All colors MUST be HSL.
 
   /* Sidebar overrides (retro) */
   --sidebar-background: 48 100% 98%;
-  --sidebar-accent: 24 6% 83%;
+  --sidebar-accent: 54 96% 88%;
   /* Modular type scale (retro only) */
   --font-size-2b: 0.75rem;  /* 12px */
   --font-size-1b: 0.875rem; /* 14px */
@@ -171,6 +171,55 @@ All colors MUST be HSL.
   --line-height-tight: 1.1;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.8;
+}
+
+/* Retro dark mode overrides (retro-only) */
+[data-theme="retro"][data-retro-dark], .theme-retro[data-retro-dark] {
+  /* Dark backgrounds and light text */
+  --background: 24 9% 6%;       /* ~stone-950 */
+  --foreground: 210 40% 98%;
+
+  --card: 24 9% 10%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 24 9% 10%;
+  --popover-foreground: 210 40% 98%;
+
+  /* Primary: lighter for contrast on dark */
+  --primary: 24 6% 85%;         /* ~stone-200 */
+  --primary-foreground: 24 9% 10%;
+
+  --secondary: 24 8% 14%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 24 8% 16%;
+  --muted-foreground: 30 6% 65%;
+
+  /* Accents */
+  --accent: 24 8% 14%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 70% 45%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 24 8% 18%;
+  --input: 24 8% 18%;
+  --ring: 48 96% 40%;           /* yellow-800-ish for visible focus */
+
+  /* Sidebar (retro dark) */
+  --sidebar-background: 24 9% 6%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-accent: 48 96% 40%;  /* yellow-800 */
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 24 8% 18%;
+  --sidebar-ring: 48 96% 40%;
+
+  /* Brand tokens (align to retro dark) */
+  --brand: 24 6% 85%;
+  --brand-foreground: 24 9% 10%;
+  --brand-glow: 24 6% 92%;
+  --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
+  --shadow-elevated: 0 0 0 2px hsl(var(--border));
 }
 
 /* Typography override for retro theme */

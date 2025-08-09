@@ -38,10 +38,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex h-16 items-center px-4 border-b">
-          <span className="font-semibold">Navigation</span>
-        </div>
-        <nav className="p-3 space-y-1">
+        <nav className="p-4 pt-4 space-y-1">
           <NavLink to="/" end className={linkCls}>
             <Home className="text-muted-foreground" />
             <span>Home</span>
