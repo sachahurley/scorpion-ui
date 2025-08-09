@@ -46,6 +46,7 @@ const App = () => (
           <Route path="/components/tooltip" element={<TooltipDocsPage />} />
           <Route path="/components/elevation" element={<ElevationDocsPage />} />
           <Route path="/components/spacing" element={<SpacingDocsPage />} />
+          <Route path="/components/feedback" element={<FeedbackPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
