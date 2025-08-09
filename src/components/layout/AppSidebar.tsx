@@ -70,6 +70,8 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
                 <NavLink to="/components/cards" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Cards</NavLink>
                 <NavLink to="/components/modals" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Modals</NavLink>
                 <NavLink to="/components/type" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Type</NavLink>
+                <NavLink to="/components/pickers" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Pickers</NavLink>
+                <NavLink to="/components/progress" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Progress</NavLink>
               </div>
             )}
           </div>
