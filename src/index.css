@@ -133,8 +133,8 @@ All colors MUST be HSL.
   --muted: 48 60% 90%;
   --muted-foreground: 220 20% 40%;
 
-  --accent: 320 80% 60%;
-  --accent-foreground: 48 100% 98%;
+  --accent: 48 100% 92%;
+  --accent-foreground: 222.2 84% 4.9%;
 
   --destructive: 0 80% 50%;
   --destructive-foreground: 48 100% 98%;
@@ -182,6 +182,15 @@ All colors MUST be HSL.
 [data-theme="retro"] .rounded-sm, .theme-retro .rounded-sm { border-radius: 0.5rem; } /* 8px - checkboxes */
 [data-theme="retro"] .rounded-lg, .theme-retro .rounded-lg { border-radius: 1rem; }   /* 16px - cards */
 
+/* Retro typography weight overrides: force regular weight */
+.theme-retro h1, .theme-retro h2, .theme-retro h3, .theme-retro h4, .theme-retro h5, .theme-retro h6,
+[data-theme="retro"] h1, [data-theme="retro"] h2, [data-theme="retro"] h3, [data-theme="retro"] h4, [data-theme="retro"] h5, [data-theme="retro"] h6,
+.theme-retro strong, .theme-retro b, [data-theme="retro"] strong, [data-theme="retro"] b,
+.theme-retro .font-bold, .theme-retro .font-extrabold, .theme-retro .font-black, .theme-retro .font-semibold, .theme-retro .font-medium,
+[data-theme="retro"] .font-bold, [data-theme="retro"] .font-extrabold, [data-theme="retro"] .font-black, [data-theme="retro"] .font-semibold, [data-theme="retro"] .font-medium {
+  font-weight: 400 !important;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -201,9 +210,9 @@ All colors MUST be HSL.
 @layer components {
   /* Retro typography helpers (use CSS vars; letter-spacing normalized by theme) */
   .type-theme { font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; letter-spacing: normal; }
-  .type-h1 { font-size: var(--font-size-7); line-height: var(--line-height-tight); font-weight: 600; }
-  .type-h2 { font-size: var(--font-size-5); line-height: var(--line-height-tight); font-weight: 600; }
-  .type-h3 { font-size: var(--font-size-4); line-height: var(--line-height-normal); font-weight: 600; }
+  .type-h1 { font-size: var(--font-size-7); line-height: var(--line-height-tight); font-weight: 400; }
+  .type-h2 { font-size: var(--font-size-5); line-height: var(--line-height-tight); font-weight: 400; }
+  .type-h3 { font-size: var(--font-size-4); line-height: var(--line-height-normal); font-weight: 400; }
   .type-body { font-size: var(--font-size-0); line-height: var(--line-height-normal); font-weight: 400; }
   .type-small { font-size: var(--font-size-1b); line-height: var(--line-height-normal); font-weight: 400; }
   .type-large { font-size: var(--font-size-2); line-height: var(--line-height-relaxed); font-weight: 400; }

@@ -17,7 +17,7 @@ const ButtonsPage = () => {
     { name: "Focus Ring", value: "hsl(var(--ring))" },
     { name: "Hover Background (secondary)", value: "hsl(var(--secondary))" },
     { name: "Disabled Opacity", value: "50%" },
-    { name: "Text Weight", value: "500" },
+    { name: "Text Weight (retro)", value: "400" },
   ];
 
   return (

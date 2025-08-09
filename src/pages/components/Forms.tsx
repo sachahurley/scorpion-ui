@@ -20,7 +20,7 @@ const FormsPage = () => {
     { name: "Focus Ring", value: "hsl(var(--ring))" },
     { name: "Control Radius", value: "var(--radius)" },
     { name: "Field Padding", value: "0.5rem 0.75rem" },
-    { name: "Label Weight", value: "500" },
+    { name: "Label Weight (retro)", value: "400" },
   ];
 
   return (

@@ -18,6 +18,7 @@ const TypePage = () => {
     { name: "Tight Line Height", value: "var(--line-height-tight)" },
     { name: "Normal Line Height", value: "var(--line-height-normal)" },
     { name: "Relaxed Line Height", value: "var(--line-height-relaxed)" },
+    { name: "Heading Weight (retro)", value: "400" },
     { name: "Font Family", value: "'Fira Code', ui-monospace, monospace" },
   ];
 
@@ -40,9 +41,9 @@ const TypePage = () => {
 
 /* Typography classes (letter-spacing normalized) */
 .type-theme { font-family: 'Fira Code', ui-monospace, monospace; letter-spacing: normal; }
-.type-h1 { font-size: var(--font-size-7); line-height: var(--line-height-tight); font-weight: 600; }
-.type-h2 { font-size: var(--font-size-5); line-height: var(--line-height-tight); font-weight: 600; }
-.type-h3 { font-size: var(--font-size-4); line-height: var(--line-height-normal); font-weight: 600; }
+.type-h1 { font-size: var(--font-size-7); line-height: var(--line-height-tight); font-weight: 400; }
+.type-h2 { font-size: var(--font-size-5); line-height: var(--line-height-tight); font-weight: 400; }
+.type-h3 { font-size: var(--font-size-4); line-height: var(--line-height-normal); font-weight: 400; }
 .type-body { font-size: var(--font-size-0); line-height: var(--line-height-normal); font-weight: 400; }
 .type-small { font-size: var(--font-size-1b); line-height: var(--line-height-normal); font-weight: 400; }
 .type-large { font-size: var(--font-size-2); line-height: var(--line-height-relaxed); font-weight: 400; }`;
