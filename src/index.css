@@ -154,8 +154,8 @@ All colors MUST be HSL.
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
 
   /* Sidebar overrides (retro) */
-  --sidebar-background: 48 60% 88%;
-
+  --sidebar-background: 48 100% 98%;
+  --sidebar-accent: 24 6% 83%;
   /* Modular type scale (retro only) */
   --font-size-2b: 0.75rem;  /* 12px */
   --font-size-1b: 0.875rem; /* 14px */

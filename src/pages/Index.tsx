@@ -16,7 +16,7 @@ const Index = () => {
 {theme === "retro" ? (
             <>
               <h1 className="sr-only">Scorpion UI</h1>
-              <RetroWordmark className="w-full max-w-[520px] md:max-w-[640px]" />
+              <RetroWordmark className="w-full max-w-[520px] md:max-w-[640px] text-brand-foreground/90" />
             </>
           ) : (
             <h1 className="text-3xl md:text-4xl font-bold text-brand-foreground tracking-tight">

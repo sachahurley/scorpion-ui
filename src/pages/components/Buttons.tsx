@@ -18,6 +18,9 @@ const ButtonsPage = () => {
     { name: "Hover Background (secondary)", value: "hsl(var(--secondary))" },
     { name: "Disabled Opacity", value: "50%" },
     { name: "Text Weight (retro)", value: "400" },
+    { name: "Sidebar Accent (retro)", value: "hsl(var(--sidebar-accent))" },
+    { name: "Sidebar Background (retro)", value: "hsl(var(--sidebar-background))" },
+    { name: "Header Horizontal Padding (retro)", value: "16px" },
   ];
 
   return (

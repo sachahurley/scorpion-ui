@@ -140,7 +140,7 @@ const RetroWordmark = memo(({ text = "SCORPION UI", pixelSize = 8, className }: 
         width="100%"
         height="auto"
         shapeRendering="crispEdges"
-        className="text-primary"
+        
         role="img"
       >
         <title>SCORPION UI</title>
