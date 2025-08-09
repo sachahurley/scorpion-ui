@@ -72,6 +72,9 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
                 <NavLink to="/components/type" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Type</NavLink>
                 <NavLink to="/components/pickers" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Pickers</NavLink>
                 <NavLink to="/components/progress" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Progress</NavLink>
+                <NavLink to="/components/tooltip" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Tooltip</NavLink>
+                <NavLink to="/components/elevation" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Elevation</NavLink>
+                <NavLink to="/components/spacing" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Spacing</NavLink>
               </div>
             )}
           </div>

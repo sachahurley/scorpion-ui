@@ -16,6 +16,9 @@ import ProgressExtraPage from "./pages/components/ProgressExtra";
 import NotFound from "./pages/NotFound";
 import AppLayout from "./components/layout/AppLayout";
 import { ThemeProvider } from "./theme/ThemeProvider";
+import TooltipDocsPage from "./pages/components/Tooltip";
+import ElevationDocsPage from "./pages/components/Elevation";
+import SpacingDocsPage from "./pages/components/Spacing";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +41,10 @@ const App = () => (
           <Route path="/components/type" element={<TypePage />} />
           <Route path="/components/pickers" element={<PickersPage />} />
           <Route path="/components/progress" element={<ProgressExtraPage />} />
+          {/* New docs pages */}
+          <Route path="/components/tooltip" element={<(await import('./pages/components/Tooltip')).default />} />
+          <Route path="/components/elevation" element={<(await import('./pages/components/Elevation')).default />} />
+          <Route path="/components/spacing" element={<(await import('./pages/components/Spacing')).default />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

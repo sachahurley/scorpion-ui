@@ -153,6 +153,37 @@ All colors MUST be HSL.
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
 
+  /* Elevation (retro only): layered shadows using brand hue */
+  --elevation-1: 0 1px 1px 0 hsl(var(--brand) / 0.08);
+  --elevation-2: 0 2px 4px -2px hsl(var(--brand) / 0.12), 0 1px 2px 0 hsl(var(--brand) / 0.06);
+  --elevation-3: 0 8px 16px -6px hsl(var(--brand) / 0.18), 0 2px 6px -2px hsl(var(--brand) / 0.10);
+  --elevation-4: 0 12px 24px -8px hsl(var(--brand) / 0.22), 0 4px 10px -2px hsl(var(--brand) / 0.12);
+  --elevation-5: 0 18px 36px -10px hsl(var(--brand) / 0.28), 0 8px 18px -4px hsl(var(--brand) / 0.16);
+  --elevation-6: 0 24px 48px -12px hsl(var(--brand) / 0.34), 0 12px 22px -6px hsl(var(--brand) / 0.2);
+
+  /* Spacing tokens (retro only) */
+  --space-0: 0rem;
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-40: 2.5rem;
+  --space-48: 3rem;
+  --space-56: 3.5rem;
+  --space-64: 4rem;
+  --space-80: 5rem;
+  --space-96: 6rem;
+  --space-112: 7rem;
+  --space-128: 8rem;
+  --space-144: 9rem;
+  --space-160: 10rem;
+  --space-192: 12rem;
+  --space-224: 14rem;
+  --space-256: 16rem;
+
   /* Logo animation colors (retro) */
   --logo-anim-mid: 0 70% 40%;
   --fire-yellow: 48 96% 60%;
@@ -226,6 +257,37 @@ All colors MUST be HSL.
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
 
+  /* Elevation (retro dark): uses brand hue variable */
+  --elevation-1: 0 1px 1px 0 hsl(var(--brand) / 0.10);
+  --elevation-2: 0 2px 4px -2px hsl(var(--brand) / 0.16), 0 1px 2px 0 hsl(var(--brand) / 0.08);
+  --elevation-3: 0 8px 16px -6px hsl(var(--brand) / 0.22), 0 2px 6px -2px hsl(var(--brand) / 0.14);
+  --elevation-4: 0 12px 24px -8px hsl(var(--brand) / 0.28), 0 4px 10px -2px hsl(var(--brand) / 0.16);
+  --elevation-5: 0 18px 36px -10px hsl(var(--brand) / 0.34), 0 8px 18px -4px hsl(var(--brand) / 0.2);
+  --elevation-6: 0 24px 56px -12px hsl(var(--brand) / 0.40), 0 12px 28px -6px hsl(var(--brand) / 0.26);
+
+  /* Spacing tokens (same as light) */
+  --space-0: 0rem;
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-40: 2.5rem;
+  --space-48: 3rem;
+  --space-56: 3.5rem;
+  --space-64: 4rem;
+  --space-80: 5rem;
+  --space-96: 6rem;
+  --space-112: 7rem;
+  --space-128: 8rem;
+  --space-144: 9rem;
+  --space-160: 10rem;
+  --space-192: 12rem;
+  --space-224: 14rem;
+  --space-256: 16rem;
+
   /* Logo animation colors (retro dark) */
   --logo-anim-mid: 0 80% 55%;
   --fire-yellow: 48 96% 70%;
@@ -268,6 +330,13 @@ All colors MUST be HSL.
   .bg-gradient-primary { background-image: var(--gradient-primary); }
   .shadow-elevated { box-shadow: var(--shadow-elevated); }
   .transition-smooth { transition: var(--transition-smooth); }
+  /* Elevation utilities */
+  [data-theme="retro"] .shadow-e1, .theme-retro .shadow-e1 { box-shadow: var(--elevation-1); }
+  [data-theme="retro"] .shadow-e2, .theme-retro .shadow-e2 { box-shadow: var(--elevation-2); }
+  [data-theme="retro"] .shadow-e3, .theme-retro .shadow-e3 { box-shadow: var(--elevation-3); }
+  [data-theme="retro"] .shadow-e4, .theme-retro .shadow-e4 { box-shadow: var(--elevation-4); }
+  [data-theme="retro"] .shadow-e5, .theme-retro .shadow-e5 { box-shadow: var(--elevation-5); }
+  [data-theme="retro"] .shadow-e6, .theme-retro .shadow-e6 { box-shadow: var(--elevation-6); }
 }
 
 @layer components {
