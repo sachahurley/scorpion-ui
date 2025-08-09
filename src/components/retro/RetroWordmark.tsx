@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { cn } from "@/lib/utils";
-
+import "@/styles/retro-logo.css";
 // 5x7 pixel font maps for required letters
 const LETTERS: Record<string, string[]> = {
   " ": [
@@ -134,17 +134,24 @@ const RetroWordmark = memo(({ text = "SCORPION UI", pixelSize = 8, className }: 
   const { rects, totalWidth, totalHeight } = buildRects(text, 1); // build at 1px then scale via viewBox
 
   return (
-    <figure className={cn("inline-block retro-logo-animate", className)} aria-hidden>
+    <figure className={cn("inline-block retro-logo-fire", className)} aria-hidden>
       <svg
         viewBox={`0 0 ${totalWidth} ${totalHeight}`}
         width="100%"
         height="auto"
         shapeRendering="crispEdges"
-        
         role="img"
       >
         <title>SCORPION UI</title>
-        <g>{rects}</g>
+        <defs>
+          <linearGradient id="logo-fire-gradient" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" className="fire-stop fire-stop-bottom" />
+            <stop offset="40%" className="fire-stop fire-stop-mid1" />
+            <stop offset="70%" className="fire-stop fire-stop-mid2" />
+            <stop offset="100%" className="fire-stop fire-stop-top" />
+          </linearGradient>
+        </defs>
+        <g fill="url(#logo-fire-gradient)">{rects}</g>
       </svg>
       <figcaption className="sr-only">Scorpion UI</figcaption>
     </figure>

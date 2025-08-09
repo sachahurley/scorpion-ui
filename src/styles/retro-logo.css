@@ -1,0 +1,67 @@
+/* Retro fire animation for the 8-bit logo (scoped to retro theme) */
+
+/* Ensure gradient is used and base color matches supporting text */
+[data-theme="retro"] .retro-logo-fire {
+  color: hsl(var(--muted-foreground));
+}
+[data-theme="retro"] .retro-logo-fire rect {
+  fill: url(#logo-fire-gradient);
+}
+
+/* Animate gradient stops to simulate an upward flame and downward cool */
+[data-theme="retro"] .retro-logo-fire .fire-stop {
+  stop-color: currentColor;
+}
+[data-theme="retro"] .retro-logo-fire .fire-stop-bottom {
+  animation: fire-bottom 7s ease-in-out infinite;
+}
+[data-theme="retro"] .retro-logo-fire .fire-stop-mid1 {
+  animation: fire-mid1 7s ease-in-out infinite;
+}
+[data-theme="retro"] .retro-logo-fire .fire-stop-mid2 {
+  animation: fire-mid2 7s ease-in-out infinite;
+}
+[data-theme="retro"] .retro-logo-fire .fire-stop-top {
+  animation: fire-top 7s ease-in-out infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="retro"] .retro-logo-fire .fire-stop {
+    animation: none !important;
+  }
+}
+
+/* Keyframes: each tier heats up later to create upward movement illusion */
+@keyframes fire-bottom {
+  0%, 10%   { stop-color: currentColor; }
+  20%, 35%  { stop-color: hsl(var(--fire-yellow)); }
+  45%, 60%  { stop-color: hsl(var(--fire-orange)); }
+  70%, 80%  { stop-color: hsl(var(--fire-red)); }
+  90%       { stop-color: hsl(var(--fire-orange)); }
+  100%      { stop-color: currentColor; }
+}
+
+@keyframes fire-mid1 {
+  0%, 20%   { stop-color: currentColor; }
+  30%, 45%  { stop-color: hsl(var(--fire-yellow)); }
+  55%, 70%  { stop-color: hsl(var(--fire-orange)); }
+  80%, 90%  { stop-color: hsl(var(--fire-red)); }
+  100%      { stop-color: currentColor; }
+}
+
+@keyframes fire-mid2 {
+  0%, 30%   { stop-color: currentColor; }
+  40%, 55%  { stop-color: hsl(var(--fire-yellow)); }
+  65%, 80%  { stop-color: hsl(var(--fire-orange)); }
+  90%       { stop-color: hsl(var(--fire-red)); }
+  100%      { stop-color: currentColor; }
+}
+
+@keyframes fire-top {
+  0%, 40%   { stop-color: currentColor; }
+  50%, 65%  { stop-color: hsl(var(--fire-yellow)); }
+  75%, 85%  { stop-color: hsl(var(--fire-orange)); }
+  90%       { stop-color: hsl(var(--fire-red)); }
+  100%      { stop-color: currentColor; }
+}

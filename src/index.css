@@ -153,8 +153,11 @@ All colors MUST be HSL.
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
 
-  /* Logo animation color (retro) */
+  /* Logo animation colors (retro) */
   --logo-anim-mid: 0 70% 40%;
+  --fire-yellow: 48 96% 60%;
+  --fire-orange: 30 96% 55%;
+  --fire-red: 0 80% 50%;
   /* Sidebar overrides (retro) */
   --sidebar-background: 48 100% 98%;
   --sidebar-accent: 54 96% 88%;
@@ -223,8 +226,11 @@ All colors MUST be HSL.
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
 
-  /* Logo animation color (retro dark) */
+  /* Logo animation colors (retro dark) */
   --logo-anim-mid: 0 80% 55%;
+  --fire-yellow: 48 96% 70%;
+  --fire-orange: 30 96% 60%;
+  --fire-red: 0 85% 55%;
 }
 
 /* Typography override for retro theme */
