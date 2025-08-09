@@ -124,7 +124,7 @@ All colors MUST be HSL.
   --popover-foreground: 222.2 84% 4.9%;
 
   /* Primary set to Tailwind yellow-900 (#713f12) as HSL */
-  --primary: 28 72% 26%;
+  --primary: 12 6% 15%;
   --primary-foreground: 48 100% 98%;
 
   --secondary: 48 100% 92%;
@@ -141,17 +141,20 @@ All colors MUST be HSL.
 
   --border: 220 25% 75%;
   --input: 220 25% 75%;
-  --ring: 28 72% 26%;
+  --ring: 12 6% 15%;
 
   /* Base control radius (buttons, inputs, checkboxes) */
   --radius: 0.5rem; /* 8px */
 
   /* Brand tokens (align to primary) */
-  --brand: 28 72% 26%;
+  --brand: 12 6% 15%;
   --brand-foreground: 48 100% 98%;
-  --brand-glow: 28 72% 32%;
+  --brand-glow: 12 6% 22%;
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
+
+  /* Sidebar overrides (retro) */
+  --sidebar-background: 48 60% 88%;
 
   /* Modular type scale (retro only) */
   --font-size-2b: 0.75rem;  /* 12px */

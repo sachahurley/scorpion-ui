@@ -4,15 +4,25 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Rocket, Sparkles, Shield } from "lucide-react";
+import RetroWordmark from "@/components/retro/RetroWordmark";
+import { useAppTheme } from "@/theme/ThemeProvider";
 
 const Index = () => {
+  const { theme } = useAppTheme();
   return (
     <main>
       <section className="mb-8">
         <div className="rounded-2xl bg-gradient-primary p-8 shadow-elevated">
-          <h1 className="text-3xl md:text-4xl font-bold text-brand-foreground tracking-tight">
-            Scorpion UI
-          </h1>
+{theme === "retro" ? (
+            <>
+              <h1 className="sr-only">Scorpion UI</h1>
+              <RetroWordmark className="w-full max-w-[520px] md:max-w-[640px]" />
+            </>
+          ) : (
+            <h1 className="text-3xl md:text-4xl font-bold text-brand-foreground tracking-tight">
+              Scorpion UI
+            </h1>
+          )}
           <p className="mt-2 max-w-2xl text-brand-foreground/90">
             A clean, modern layout built with Tailwind CSS and shadcn/ui. Explore the components and start building.
           </p>
