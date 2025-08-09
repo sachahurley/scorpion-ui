@@ -40,7 +40,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
       >
         <nav className="p-4 pt-4 space-y-1">
           <NavLink to="/" end className={linkCls}>
-            <Home className="text-muted-foreground" />
+            <Home />
             <span>Home</span>
           </NavLink>
 
@@ -56,7 +56,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
               aria-expanded={groupOpen}
             >
               <span className="flex items-center gap-3">
-                <LayoutGrid className="text-muted-foreground" />
+                <LayoutGrid />
                 Components
               </span>
               <ChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} />

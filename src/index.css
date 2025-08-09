@@ -153,6 +153,8 @@ All colors MUST be HSL.
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
 
+  /* Logo animation color (retro) */
+  --logo-anim-mid: 0 70% 40%;
   /* Sidebar overrides (retro) */
   --sidebar-background: 48 100% 98%;
   --sidebar-accent: 54 96% 88%;
@@ -220,6 +222,9 @@ All colors MUST be HSL.
   --brand-glow: 24 6% 92%;
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
+
+  /* Logo animation color (retro dark) */
+  --logo-anim-mid: 0 80% 55%;
 }
 
 /* Typography override for retro theme */
@@ -268,4 +273,21 @@ All colors MUST be HSL.
   .type-body { font-size: var(--font-size-0); line-height: var(--line-height-normal); font-weight: 400; }
   .type-small { font-size: var(--font-size-1b); line-height: var(--line-height-normal); font-weight: 400; }
   .type-large { font-size: var(--font-size-2); line-height: var(--line-height-relaxed); font-weight: 400; }
+}
+
+/* Retro logo color animation (retro theme only) */
+@layer utilities {
+  [data-theme="retro"] .retro-logo-animate {
+    color: hsl(var(--muted-foreground));
+    animation: retro-logo-color 3.5s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="retro"] .retro-logo-animate { animation: none; }
+}
+
+@keyframes retro-logo-color {
+  0%, 100% { color: hsl(var(--muted-foreground)); }
+  50% { color: hsl(var(--logo-anim-mid)); }
 }

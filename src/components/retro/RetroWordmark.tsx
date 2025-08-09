@@ -134,7 +134,7 @@ const RetroWordmark = memo(({ text = "SCORPION UI", pixelSize = 8, className }: 
   const { rects, totalWidth, totalHeight } = buildRects(text, 1); // build at 1px then scale via viewBox
 
   return (
-    <figure className={cn("inline-block", className)} aria-hidden>
+    <figure className={cn("inline-block retro-logo-animate", className)} aria-hidden>
       <svg
         viewBox={`0 0 ${totalWidth} ${totalHeight}`}
         width="100%"

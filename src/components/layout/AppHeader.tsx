@@ -14,7 +14,10 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
 
   return (
     <header className={cn("sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60", className)}>
-      <div className={cn("container flex h-16 items-center justify-between gap-4", theme === "retro" && "px-4")}> {/* 16px sides in retro */}
+      <div className={cn(
+        "flex h-16 items-center justify-between gap-4",
+        theme === "retro" ? "w-full px-4" : "container"
+      )}> {/* 16px sides in retro */}
         <div className="flex items-center gap-3">
           <Button variant="outline" size="icon" aria-label="Toggle navigation" onClick={onToggleSidebar} className="md:hidden">
             <Menu />
