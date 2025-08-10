@@ -1,0 +1,530 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    /* Brand tokens */
+    --brand: 258 85% 60%;
+    --brand-foreground: 0 0% 100%;
+    --brand-glow: 258 85% 66%;
+
+    /* Gradient & shadow tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
+    --shadow-elevated: 0 10px 30px -10px hsl(var(--brand) / 0.35);
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --sidebar-background: 0 0% 98%;
+    
+    --sidebar-foreground: 240 5.3% 26.1%;
+    
+    --sidebar-primary: 240 5.9% 10%;
+    
+    --sidebar-primary-foreground: 0 0% 98%;
+    
+    --sidebar-accent: 240 4.8% 95.9%;
+    
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    
+    --sidebar-border: 220 13% 91%;
+    
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Button size tokens (default theme) */
+    --btn-h: 2.5rem; /* 40px */
+    --btn-px: 1rem;  /* 16px */
+    --btn-py: 0.5rem;/* 8px  */
+    --btn-sm-h: 2.25rem; /* 36px */
+    --btn-sm-px: 0.75rem; /* 12px */
+    --btn-lg-h: 2.75rem; /* 44px */
+    --btn-lg-px: 1.5rem;  /* 24px */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Brand tokens (dark) */
+    --brand: 258 85% 70%;
+    --brand-foreground: 0 0% 100%;
+    --brand-glow: 258 85% 76%;
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
+    --shadow-elevated: 0 12px 32px -12px hsl(var(--brand) / 0.45);
+  }
+}
+
+/* Retro theme overrides */
+[data-theme="retro"], .theme-retro {
+  /* 8-bit inspired palette and shapes using semantic tokens */
+  --background: 48 100% 98%;
+  --foreground: 222.2 84% 4.9%;
+
+  --card: 48 100% 98%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 48 100% 98%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  /* Primary set to retro stone-like tone */
+  --primary: 12 6% 15%;
+  --primary-foreground: 48 100% 98%;
+
+  --secondary: 48 100% 92%;
+  --secondary-foreground: 222.2 84% 4.9%;
+
+  --muted: 48 60% 90%;
+  --muted-foreground: 220 20% 40%;
+
+  --accent: 48 100% 92%;
+  --accent-foreground: 222.2 84% 4.9%;
+
+  --destructive: 0 80% 50%;
+  --destructive-foreground: 48 100% 98%;
+
+  --border: 220 25% 75%;
+  --input: 220 25% 75%;
+  --ring: 12 6% 15%;
+
+  /* Base control radius (buttons, inputs, checkboxes) */
+  --radius: 0.5rem; /* 8px */
+
+  /* Brand tokens (align to primary) */
+  --brand: 12 6% 15%;
+  --brand-foreground: 48 100% 98%;
+  --brand-glow: 12 6% 22%;
+  --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
+  --shadow-elevated: 0 0 0 2px hsl(var(--border));
+
+  /* Elevation (retro only): layered shadows using brand hue */
+  --elevation-1: 0 1px 1px 0 hsl(var(--brand) / 0.08);
+  --elevation-2: 0 2px 4px -2px hsl(var(--brand) / 0.12), 0 1px 2px 0 hsl(var(--brand) / 0.06);
+  --elevation-3: 0 8px 16px -6px hsl(var(--brand) / 0.18), 0 2px 6px -2px hsl(var(--brand) / 0.10);
+  --elevation-4: 0 12px 24px -8px hsl(var(--brand) / 0.22), 0 4px 10px -2px hsl(var(--brand) / 0.12);
+  --elevation-5: 0 18px 36px -10px hsl(var(--brand) / 0.28), 0 8px 18px -4px hsl(var(--brand) / 0.16);
+  --elevation-6: 0 24px 48px -12px hsl(var(--brand) / 0.34), 0 12px 22px -6px hsl(var(--brand) / 0.2);
+
+  /* Spacing tokens (retro only) */
+  --space-0: 0rem;
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-40: 2.5rem;
+  --space-48: 3rem;
+  --space-56: 3.5rem;
+  --space-64: 4rem;
+  --space-80: 5rem;
+  --space-96: 6rem;
+  --space-112: 7rem;
+  --space-128: 8rem;
+  --space-144: 9rem;
+  --space-160: 10rem;
+  --space-192: 12rem;
+  --space-224: 14rem;
+  --space-256: 16rem;
+
+  /* Feedback tokens (retro only) */
+  --feedback-success: 142 70% 35%; /* green-600 */
+  --feedback-warning: 45 93% 47%; /* amber-500 */
+  --feedback-error: 0 84% 60%;    /* red-500 */
+  --feedback-info: 200 98% 39%;   /* sky-600 */
+  --feedback-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --feedback-duration: 0.25s;
+
+  /* Logo animation colors (retro) */
+  --logo-anim-mid: 0 70% 40%;
+  --fire-yellow: 48 96% 60%;
+  --fire-orange: 30 96% 55%;
+  --fire-red: 0 80% 50%;
+
+  /* Sidebar overrides (retro) */
+  --sidebar-background: 48 100% 98%;
+  --sidebar-accent: 54 96% 88%;
+
+  /* Retro content layout variables */
+  --retro-header-h: 64px; /* default; updated via JS */
+  --retro-content-margin: 16px; /* default mobile */
+  --retro-content-top-gap: 16px; /* default mobile */
+
+  /* Modular type scale (retro only) */
+  --font-size-2b: 0.75rem;  /* 12px */
+  --font-size-1b: 0.875rem; /* 14px */
+  --font-size-0: 1rem;      /* 16px */
+  --font-size-1: 1.125rem;  /* 18px */
+  --font-size-2: 1.265rem;  /* 20.24px */
+  --font-size-3: 1.424rem;  /* 22.78px */
+  --font-size-4: 1.602rem;  /* 25.63px */
+  --font-size-5: 1.802rem;  /* 28.83px */
+  --font-size-6: 2.027rem;  /* 32.43px */
+  --font-size-7: 2.281rem;  /* 36.5px */
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.8;
+
+  /* Retro button size overrides (20% smaller/larger) */
+  --btn-sm-h: 2rem;  /* 32px */
+  --btn-sm-px: 0.75rem; /* 12px */
+  --btn-lg-h: 3rem;  /* 48px */
+  --btn-lg-px: 1.75rem; /* 28px */
+}
+
+/* Retro dark mode overrides (retro-only) */
+[data-theme="retro"][data-retro-dark], .theme-retro[data-retro-dark] {
+  /* Dark backgrounds and light text */
+  --background: 24 9% 6%;       /* ~stone-950 */
+  --foreground: 210 40% 98%;
+
+  --card: 24 9% 10%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 24 9% 10%;
+  --popover-foreground: 210 40% 98%;
+
+  /* Primary: yellow for emphasis in dark mode */
+  --primary: var(--fire-yellow);
+  --primary-foreground: 24 9% 10%;
+
+  /* Secondary: neutral stone tone */
+  --secondary: 24 9% 14%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 24 8% 16%;
+  --muted-foreground: 30 6% 65%;
+
+  /* Accents */
+  --accent: 24 8% 14%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 70% 45%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 24 8% 18%;
+  --input: 24 8% 18%;
+  --ring: 48 96% 40%;           /* yellow-800-ish for visible focus */
+
+  /* Sidebar (retro dark) */
+  --sidebar-background: 24 9% 6%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-accent: 48 96% 40%;  /* yellow-800 */
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 24 8% 18%;
+  --sidebar-ring: 48 96% 40%;
+
+  /* Brand tokens (align to retro dark) */
+  --brand: 24 6% 85%;
+  --brand-foreground: 24 9% 10%;
+  --brand-glow: 24 6% 92%;
+  --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
+  --shadow-elevated: 0 0 0 2px hsl(var(--border));
+
+  /* Elevation (retro dark): uses brand hue variable */
+  --elevation-1: 0 1px 1px 0 hsl(var(--brand) / 0.10);
+  --elevation-2: 0 2px 4px -2px hsl(var(--brand) / 0.16), 0 1px 2px 0 hsl(var(--brand) / 0.08);
+  --elevation-3: 0 8px 16px -6px hsl(var(--brand) / 0.22), 0 2px 6px -2px hsl(var(--brand) / 0.14);
+  --elevation-4: 0 12px 24px -8px hsl(var(--brand) / 0.28), 0 4px 10px -2px hsl(var(--brand) / 0.16);
+  --elevation-5: 0 18px 36px -10px hsl(var(--brand) / 0.34), 0 8px 18px -4px hsl(var(--brand) / 0.2);
+  --elevation-6: 0 24px 56px -12px hsl(var(--brand) / 0.40), 0 12px 28px -6px hsl(var(--brand) / 0.26);
+
+  /* Spacing tokens (same as light) */
+  --space-0: 0rem;
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-40: 2.5rem;
+  --space-48: 3rem;
+  --space-56: 3.5rem;
+  --space-64: 4rem;
+  --space-80: 5rem;
+  --space-96: 6rem;
+  --space-112: 7rem;
+  --space-128: 8rem;
+  --space-144: 9rem;
+  --space-160: 10rem;
+  --space-192: 12rem;
+  --space-224: 14rem;
+  --space-256: 16rem;
+
+  /* Logo animation colors (retro dark) */
+  --logo-anim-mid: 0 80% 55%;
+  --fire-yellow: 48 96% 70%;
+  --fire-orange: 30 96% 60%;
+  --fire-red: 0 85% 55%;
+}
+
+/* Typography override for retro theme */
+.theme-retro body,
+[data-theme="retro"] body {
+  font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: normal;
+}
+
+/* Retro-only radius refinements */
+[data-theme="retro"] .rounded-md, .theme-retro .rounded-md { border-radius: 0.5rem; } /* 8px */
+[data-theme="retro"] .rounded-sm, .theme-retro .rounded-sm { border-radius: 0.5rem; } /* 8px - checkboxes */
+[data-theme="retro"] .rounded-lg, .theme-retro .rounded-lg { border-radius: 1rem; }   /* 16px - cards */
+
+/* Retro typography weight overrides: force regular weight */
+.theme-retro h1, .theme-retro h2, .theme-retro h3, .theme-retro h4, .theme-retro h5, .theme-retro h6,
+[data-theme="retro"] h1, [data-theme="retro"] h2, [data-theme="retro"] h3, [data-theme="retro"] h4, [data-theme="retro"] h5, [data-theme="retro"] h6,
+.theme-retro strong, .theme-retro b, [data-theme="retro"] strong, [data-theme="retro"] b,
+.theme-retro .font-bold, .theme-retro .font-extrabold, .theme-retro .font-black, .theme-retro .font-semibold, .theme-retro .font-medium,
+[data-theme="retro"] .font-bold, [data-theme="retro"] .font-extrabold, [data-theme="retro"] .font-black, [data-theme="retro"] .font-semibold, [data-theme="retro"] .font-medium {
+  font-weight: 400 !important;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .transition-smooth { transition: var(--transition-smooth); }
+  /* Elevation utilities */
+  [data-theme="retro"] .shadow-e1, .theme-retro .shadow-e1 { box-shadow: var(--elevation-1); }
+  [data-theme="retro"] .shadow-e2, .theme-retro .shadow-e2 { box-shadow: var(--elevation-2); }
+  [data-theme="retro"] .shadow-e3, .theme-retro .shadow-e3 { box-shadow: var(--elevation-3); }
+  [data-theme="retro"] .shadow-e4, .theme-retro .shadow-e4 { box-shadow: var(--elevation-4); }
+  [data-theme="retro"] .shadow-e5, .theme-retro .shadow-e5 { box-shadow: var(--elevation-5); }
+  [data-theme="retro"] .shadow-e6, .theme-retro .shadow-e6 { box-shadow: var(--elevation-6); }
+}
+
+/* Retro main content spacing utility */
+@layer utilities {
+  [data-theme="retro"] .retro-main-content, .theme-retro .retro-main-content {
+    margin-left: var(--retro-content-margin);
+    margin-right: var(--retro-content-margin);
+    margin-top: var(--retro-content-margin);
+    margin-bottom: var(--retro-content-margin);
+    padding-top: 0;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Retro main container spacing from header (applies to selected <main>) */
+@layer utilities {
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main { padding-top: var(--retro-header-h); }
+  [data-theme="retro"] .retro-main > .retro-main-content, .theme-retro .retro-main > .retro-main-content { margin-top: 0; }
+}
+
+
+/* Retro chevron state (retro-only) and speed utilities */
+@layer utilities {
+  [data-theme="retro"] .components-chevron,
+  .theme-retro .components-chevron { transform: rotate(0deg); transition: transform 0.3s ease; }
+  [data-theme="retro"] .components-chevron.active,
+  .theme-retro .components-chevron.active { transform: rotate(180deg); }
+  [data-theme="retro"] .anim-speed-slow, .theme-retro .anim-speed-slow { animation-duration: 2s !important; }
+  [data-theme="retro"] .anim-speed-fast, .theme-retro .anim-speed-fast { animation-duration: 0.6s !important; }
+}
+
+/* Retro content margin by breakpoint */
+@media (min-width: 768px) and (max-width: 1023px) {
+  [data-theme="retro"], .theme-retro {
+    --retro-content-margin: 24px;
+    --retro-content-top-gap: 24px;
+  }
+}
+@media (min-width: 1024px) {
+  [data-theme="retro"], .theme-retro {
+    --retro-content-margin: 32px;
+    --retro-content-top-gap: 32px;
+  }
+}
+
+/* Page-level header offset helper: adds header height only; combined with retro-main padding results in header+margin total */
+@layer utilities {
+  [data-theme="retro"] .retro-offset-header, .theme-retro .retro-offset-header { padding-top: var(--retro-header-h); }
+}
+
+
+/* Debug helpers (opt-in): add data-debug-layout="true" on <html> to visualize layout */
+@layer utilities {
+  [data-debug-layout="true"] header[data-app-header] { outline: 3px solid hsl(220 90% 50% / 0.5); background-color: hsl(220 90% 60% / 0.08); }
+  [data-debug-layout="true"] .retro-main { outline: 3px solid hsl(0 90% 50% / 0.5); background-color: hsl(0 90% 60% / 0.06); }
+  [data-debug-layout="true"] aside { outline: 3px solid hsl(140 60% 40% / 0.5); }
+}
+
+@layer components {
+  /* Retro typography helpers (use CSS vars; letter-spacing normalized by theme) */
+  .type-theme { font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; letter-spacing: normal; }
+  .type-h1 { font-size: var(--font-size-7); line-height: var(--line-height-tight); font-weight: 400; }
+  .type-h2 { font-size: var(--font-size-5); line-height: var(--line-height-tight); font-weight: 400; }
+  .type-h3 { font-size: var(--font-size-4); line-height: var(--line-height-normal); font-weight: 400; }
+  .type-body { font-size: var(--font-size-0); line-height: var(--line-height-normal); font-weight: 400; }
+  .type-small { font-size: var(--font-size-1b); line-height: var(--line-height-normal); font-weight: 400; }
+  .type-large { font-size: var(--font-size-2); line-height: var(--line-height-relaxed); font-weight: 400; }
+}
+
+/* Retro logo color animation (retro theme only) */
+@layer utilities {
+  [data-theme="retro"] .retro-logo-animate {
+    color: hsl(var(--muted-foreground));
+    animation: retro-logo-color 3.5s ease-in-out infinite;
+  }
+  /* Pixel spinner animation */
+  @keyframes pixel-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-pixel-spin { animation: pixel-rotate 1s steps(4) infinite; }
+
+  /* 8-bit scorpion loader animations */
+  @keyframes scorpion-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+  .animate-scorpion-bob { animation: scorpion-bob 1.2s ease-in-out infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="retro"] .retro-logo-animate { animation: none; }
+  .animate-pixel-spin { animation: none !important; }
+  .animate-scorpion-bob { animation: none !important; }
+}
+
+@keyframes retro-logo-color {
+  0%, 100% { color: hsl(var(--muted-foreground)); }
+  50% { color: hsl(var(--logo-anim-mid)); }
+}
+
+/* Retro-only responsive grid utilities */
+@layer utilities {
+  /* Mobile: Single column, 16px gaps and margins implied by layout */
+  /* Stretch and prevent overflow in grid items */
+  [data-theme="retro"] .component-grid,
+  .theme-retro .component-grid { justify-items: stretch; }
+  [data-theme="retro"] .component-grid > *,
+  .theme-retro .component-grid > * { min-width: 0; }
+
+  @media (max-width: 768px) {
+    [data-theme="retro"] .component-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    /* Prevent accidental horizontal scroll on mobile */
+    [data-theme="retro"] body { overflow-x: clip; }
+
+    /* Retro: Cards full-width and content wrapping on mobile */
+    [data-theme="retro"] .card,
+    .theme-retro .card {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    [data-theme="retro"] .card .card-content,
+    .theme-retro .card .card-content {
+      display: flex;
+      flex-wrap: wrap;
+      overflow-x: hidden;
+      overflow-wrap: anywhere;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+    [data-theme="retro"] .card .card-content > *,
+    .theme-retro .card .card-content > * {
+      min-width: 0;
+      flex-shrink: 1;
+    }
+  }
+  /* Tablet: 1 column with wider gaps (can be 2x1 via explicit card spans) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    [data-theme="retro"] .component-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+  /* Desktop: auto-fit into 300px min cards for 2-3 columns */
+  @media (min-width: 1024px) {
+    [data-theme="retro"] .component-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+  }
+}
+
