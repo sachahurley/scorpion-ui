@@ -250,8 +250,8 @@ All colors MUST be HSL.
   --primary: 24 6% 85%;         /* ~stone-200 */
   --primary-foreground: 24 9% 10%;
 
-  --secondary: 24 8% 14%; /* neutral (stone-800-ish) */
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 45 96% 40%; /* Tailwind yellow-600 approximation */
+  --secondary-foreground: 24 9% 10%; /* dark text for contrast */
 
   --muted: 24 8% 16%;
   --muted-foreground: 30 6% 65%;
@@ -265,20 +265,20 @@ All colors MUST be HSL.
 
   --border: 24 8% 18%;
   --input: 24 8% 18%;
-  --ring: 45 96% 40%;           /* yellow-600 for visible focus */
+  --ring: 48 96% 40%;           /* yellow-800-ish for visible focus */
 
   /* Sidebar (retro dark) */
   --sidebar-background: 24 9% 6%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-accent: 45 96% 40%;  /* yellow-600 */
-  --sidebar-accent-foreground: 24 9% 10%;
+  --sidebar-accent: 48 96% 40%;  /* yellow-800 */
+  --sidebar-accent-foreground: 0 0% 100%;
   --sidebar-border: 24 8% 18%;
-  --sidebar-ring: 45 96% 40%;
+  --sidebar-ring: 48 96% 40%;
 
   /* Brand tokens (align to retro dark) */
-  --brand: 45 96% 40%;
+  --brand: 24 6% 85%;
   --brand-foreground: 24 9% 10%;
-  --brand-glow: 48 96% 60%;
+  --brand-glow: 24 6% 92%;
   --gradient-primary: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-glow)));
   --shadow-elevated: 0 0 0 2px hsl(var(--border));
 
