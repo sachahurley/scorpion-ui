@@ -20,7 +20,7 @@ const SpacingDocsPage = () => {
         <p className="text-sm text-muted-foreground">4px scale tokens; use via CSS vars with Tailwind arbitrary values</p>
       </header>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Inline examples</CardTitle>

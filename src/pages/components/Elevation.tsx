@@ -20,7 +20,7 @@ const ElevationDocsPage = () => {
         <p className="text-sm text-muted-foreground">Six levels of depth using layered shadows</p>
       </header>
 
-      <section className="grid gap-6 md:grid-cols-3">
+      <section className="grid gap-6 md:grid-cols-3 component-grid">
         {levels.map((l) => (
           <Card key={l} className={`shadow-e${l}`}>
             <CardHeader>

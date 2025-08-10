@@ -26,7 +26,7 @@ const TooltipDocsPage = () => { const { theme } = useAppTheme();
       </header>
 
       <RetroTooltipProvider>
-        <section className="grid gap-6 md:grid-cols-2">
+        <section className="grid gap-6 md:grid-cols-2 component-grid">
           <Card>
             <CardHeader>
               <CardTitle>Directional variants</CardTitle>
@@ -91,7 +91,7 @@ const TooltipDocsPage = () => { const { theme } = useAppTheme();
         </section>
       </RetroTooltipProvider>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Content types</CardTitle>

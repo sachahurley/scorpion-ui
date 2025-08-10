@@ -77,7 +77,7 @@ const TypePage = () => {
 
       <h1 className="text-2xl font-bold tracking-tight">Typography System</h1>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Hierarchy</CardTitle>

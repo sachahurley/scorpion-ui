@@ -33,7 +33,7 @@ const CardsPage = () => {
 
       <h1 className="text-2xl font-bold tracking-tight">Cards</h1>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Card Title</CardTitle>

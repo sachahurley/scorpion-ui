@@ -18,7 +18,7 @@ const PickersPage = () => {
         <p className="text-sm text-muted-foreground">Retro-themed, accessible form utilities (light/dark aware).</p>
       </header>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>File Upload</CardTitle>

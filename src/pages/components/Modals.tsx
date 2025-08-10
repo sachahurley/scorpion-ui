@@ -35,7 +35,7 @@ const ModalsPage = () => {
 
       <h1 className="text-2xl font-bold tracking-tight">Dialogs & Sheets</h1>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Dialog</CardTitle>

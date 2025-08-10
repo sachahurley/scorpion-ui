@@ -31,21 +31,22 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
       <div
         aria-hidden
         onClick={onClose}
-        className={cn(
-          "fixed inset-0 z-30 bg-foreground/10 backdrop-blur-sm transition-opacity md:hidden",
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        )}
+          className={cn(
+            "fixed inset-0 z-30 bg-foreground/10 backdrop-blur-sm transition-opacity",
+            theme === "retro" ? "lg:hidden" : "md:hidden",
+            open ? "opacity-100" : "pointer-events-none opacity-0"
+          )}
       />
 
       <aside
         className={cn(
-          "fixed z-40 inset-y-0 left-0 w-64 border-r bg-sidebar transition-transform md:translate-x-0",
-          theme === "retro" ? "md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:overflow-y-auto md:z-auto" : "md:static md:z-auto",
+          "fixed z-40 inset-y-0 left-0 w-64 border-r bg-sidebar transition-transform",
+          theme === "retro" ? "lg:translate-x-0 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:overflow-y-auto lg:z-auto" : "md:translate-x-0 md:static md:z-auto",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <nav className={cn("p-4 pt-4 space-y-1", theme === "retro" ? "pb-24 md:pb-4" : undefined)}>
-          <NavLink to="/" end className={linkCls}>
+        <nav className={cn("p-4 pt-4 space-y-1", theme === "retro" ? "pb-24 lg:pb-4" : undefined)}>
+          <NavLink to="/" end className={linkCls} onClick={onClose}>
             {theme === "retro" ? <PixelHome /> : <Home />}
             <span>Home</span>
           </NavLink>
@@ -73,25 +74,25 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
             </button>
             {groupOpen && (
               <div className="mt-1 space-y-1">
-                <NavLink to="/components" end className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Overview</NavLink>
-                <NavLink to="/components/navigation" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Navigation</NavLink>
-                <NavLink to="/components/buttons" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Buttons</NavLink>
-                <NavLink to="/components/forms" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Forms</NavLink>
-                <NavLink to="/components/cards" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Cards</NavLink>
-                <NavLink to="/components/modals" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Modals</NavLink>
-                <NavLink to="/components/type" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Type</NavLink>
-                <NavLink to="/components/pickers" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Pickers</NavLink>
-                <NavLink to="/components/progress" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>Progress</NavLink>
-                <NavLink to="/components/tooltip" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>
+                <NavLink to="/components" end className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Overview</NavLink>
+                <NavLink to="/components/navigation" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Navigation</NavLink>
+                <NavLink to="/components/buttons" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Buttons</NavLink>
+                <NavLink to="/components/forms" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Forms</NavLink>
+                <NavLink to="/components/cards" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Cards</NavLink>
+                <NavLink to="/components/modals" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Modals</NavLink>
+                <NavLink to="/components/type" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Type</NavLink>
+                <NavLink to="/components/pickers" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Pickers</NavLink>
+                <NavLink to="/components/progress" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>Progress</NavLink>
+                <NavLink to="/components/tooltip" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>
                   Tooltip
                 </NavLink>
-                <NavLink to="/components/elevation" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>
+                <NavLink to="/components/elevation" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>
                   Elevation
                 </NavLink>
-                <NavLink to="/components/spacing" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>
+                <NavLink to="/components/spacing" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>
                   Spacing
                 </NavLink>
-                <NavLink to="/components/feedback" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")}>
+                <NavLink to="/components/feedback" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>
                   Feedback
                 </NavLink>
               </div>
@@ -100,14 +101,15 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
         </nav>
 
         {theme === "retro" && (
-          <div className="absolute bottom-0 left-0 right-0 border-t p-4 bg-sidebar md:hidden">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2" aria-label="Retro dark mode toggle">
+          <div className={cn("absolute bottom-0 left-0 right-0 border-t p-4 bg-sidebar", theme === "retro" ? "lg:hidden" : "md:hidden")}
+          >
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-center gap-2" aria-label="Retro dark mode toggle">
                 <Sun className={cn("h-4 w-4", retroDark ? "opacity-40" : "opacity-100")} />
                 <Switch checked={retroDark} onCheckedChange={(v) => setRetroDark(v)} aria-label="Toggle dark mode" />
                 <Moon className={cn("h-4 w-4", retroDark ? "opacity-100" : "opacity-40")} />
               </div>
-              <Button onClick={toggleTheme} variant="outline" size="sm">
+              <Button onClick={toggleTheme} variant="outline" size="sm" className="w-full">
                 Switch to Modern
               </Button>
             </div>

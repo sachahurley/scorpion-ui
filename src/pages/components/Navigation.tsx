@@ -79,7 +79,7 @@ const NavigationPage = () => {
 
       <h1 className="text-2xl font-bold tracking-tight">Navigation Components</h1>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Tabs</CardTitle>
@@ -126,7 +126,7 @@ const NavigationPage = () => {
       </section>
 
       {/* Sidebar Preview & States */}
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Sidebar (live preview)</CardTitle>

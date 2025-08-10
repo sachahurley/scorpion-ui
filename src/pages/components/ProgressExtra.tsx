@@ -13,7 +13,7 @@ const ProgressExtraPage = () => {
         <p className="text-sm text-muted-foreground">Retro-themed circular indicators with accessible contrast.</p>
       </header>
 
-      <section className="grid gap-6 md:grid-cols-3">
+      <section className="grid gap-6 md:grid-cols-3 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Default</CardTitle>

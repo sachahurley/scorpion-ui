@@ -48,37 +48,6 @@ const ComponentsPage = () => {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <div className="flex items-center gap-2 basis-full sm:basis-auto sm:ml-auto mt-2 sm:mt-0">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" aria-haspopup="menu">Actions <ChevronDown /></Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="z-[60]">
-              <DropdownMenuItem onClick={() => toast({ title: "Action", description: "You clicked New" })}>New</DropdownMenuItem>
-              <DropdownMenuItem>Import</DropdownMenuItem>
-              <DropdownMenuItem>Export</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="secondary">Open Sheet</Button>
-            </SheetTrigger>
-            <SheetContent className="sm:max-w-md">
-              <SheetHeader>
-                <SheetTitle>Quick settings</SheetTitle>
-                <SheetDescription>Change your preferences.</SheetDescription>
-              </SheetHeader>
-              <div className="mt-4 space-y-4">
-                <div className="flex items-center gap-2">
-                  <Checkbox id="c1" />
-                  <label htmlFor="c1" className="text-sm">Enable tips</label>
-                </div>
-                <Separator />
-                <Button variant="default">Save</Button>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
       </header>
 
       <h1 className="text-2xl font-bold tracking-tight">UI Components Demo</h1>
