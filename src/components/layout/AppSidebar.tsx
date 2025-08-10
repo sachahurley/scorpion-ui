@@ -101,10 +101,10 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
         </nav>
 
         {theme === "retro" && (
-          <div className={cn("absolute bottom-0 left-0 right-0 border-t p-4 bg-sidebar", theme === "retro" ? "lg:hidden" : "md:hidden")}
+          <div className={cn("absolute bottom-0 left-0 right-0 border-t p-4 bg-sidebar mobile-sidebar", theme === "retro" ? "lg:hidden" : "md:hidden")}
           >
             <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-center gap-2" aria-label="Retro dark mode toggle">
+              <div className="flex items-center justify-start gap-2 theme-switch self-start" aria-label="Retro dark mode toggle">
                 <Sun className={cn("h-4 w-4", retroDark ? "opacity-40" : "opacity-100")} />
                 <Switch checked={retroDark} onCheckedChange={(v) => setRetroDark(v)} aria-label="Toggle dark mode" />
                 <Moon className={cn("h-4 w-4", retroDark ? "opacity-100" : "opacity-40")} />

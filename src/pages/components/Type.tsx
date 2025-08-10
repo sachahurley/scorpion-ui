@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
+import { cn } from "@/lib/utils";
 
 const TypePage = () => {
   useEffect(() => {
@@ -77,7 +78,7 @@ const TypePage = () => {
 
       <h1 className="text-2xl font-bold tracking-tight">Typography System</h1>
 
-      <section className="grid gap-6 md:grid-cols-2 component-grid">
+      <section>
         <Card>
           <CardHeader>
             <CardTitle>Hierarchy</CardTitle>
@@ -96,16 +97,6 @@ const TypePage = () => {
             </div>
           </CardContent>
         </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>CSS Custom Properties</CardTitle>
-            <CardDescription>Copy/paste the tokens</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <pre className="rounded-md bg-muted p-4 overflow-x-auto text-xs"><code>{codeProps}</code></pre>
-          </CardContent>
-        </Card>
       </section>
 
       <section>
@@ -118,7 +109,7 @@ const TypePage = () => {
             {specimen.map((s) => (
               <div key={s.label} className="flex items-baseline gap-4">
                 <div className="w-48 text-sm text-muted-foreground">{s.label}</div>
-                <div className={s.cls}>The quick brown fox jumps over the lazy dog.</div>
+                <div className={cn(s.cls, "flex-1 min-w-0")}>The quick brown fox jumps over the lazy dog.</div>
               </div>
             ))}
             <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
@@ -140,6 +131,18 @@ const TypePage = () => {
       </section>
 
       <DesignTokensTable title="Design Tokens (Typography)" tokens={tokens} />
+
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>CSS Custom Properties</CardTitle>
+            <CardDescription>Copy/paste the tokens</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <pre className="rounded-md bg-muted p-4 overflow-x-auto text-xs"><code>{codeProps}</code></pre>
+          </CardContent>
+        </Card>
+      </section>
     </main>
   );
 };

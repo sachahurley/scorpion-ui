@@ -250,8 +250,8 @@ All colors MUST be HSL.
   --primary: 24 6% 85%;         /* ~stone-200 */
   --primary-foreground: 24 9% 10%;
 
-  --secondary: 24 8% 14%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 22 87% 26%; /* Tailwind yellow-900 approximation */
+  --secondary-foreground: 0 0% 100%;
 
   --muted: 24 8% 16%;
   --muted-foreground: 30 6% 65%;
@@ -387,6 +387,13 @@ All colors MUST be HSL.
     to { transform: rotate(360deg); }
   }
   .animate-pixel-spin { animation: pixel-rotate 1s steps(4) infinite; }
+
+  /* 8-bit scorpion loader animations */
+  @keyframes scorpion-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+  .animate-scorpion-bob { animation: scorpion-bob 1.2s ease-in-out infinite; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -408,6 +415,9 @@ All colors MUST be HSL.
       grid-template-columns: 1fr;
       gap: 16px;
     }
+    /* Prevent accidental horizontal scroll on mobile */
+    [data-theme="retro"] body { overflow-x: hidden; }
+
   }
   /* Tablet: 1 column with wider gaps (can be 2x1 via explicit card spans) */
   @media (min-width: 768px) and (max-width: 1024px) {

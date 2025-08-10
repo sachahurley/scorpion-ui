@@ -6,7 +6,7 @@ import { useIsTabletOrBelow } from "@/hooks/use-compact-nav";
 import { cn } from "@/lib/utils";
 import { useAppTheme } from "@/theme/ThemeProvider";
 import { useLocation } from "react-router-dom";
-import PixelSpinner from "@/components/retro/display/PixelSpinner";
+import PixelScorpion from "@/components/retro/display/PixelScorpion";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -104,7 +104,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           aria-atomic="true"
         >
           <div className="flex flex-col items-center gap-3">
-            <PixelSpinner size={40} />
+            <PixelScorpion size={64} />
             <span className="text-sm">Loading…</span>
           </div>
         </div>
