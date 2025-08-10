@@ -56,6 +56,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <div
           ref={mainRef}
           tabIndex={-1}
+          aria-busy={showLoader || undefined}
           className={cn(theme === "retro" ? "px-4 pt-4 md:container md:px-0" : "container", "py-8")}
         >
           {children}
@@ -63,7 +64,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       </main>
 
       {theme === "retro" && showLoader && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-background/80 backdrop-blur-sm" role="status" aria-live="polite">
+        <div className="fixed inset-0 z-50 grid place-items-center bg-background/80 backdrop-blur-sm" role="status" aria-live="assertive" aria-atomic="true">
           <div className="flex flex-col items-center gap-3">
             <PixelSpinner size={40} />
             <span className="text-sm">Loading…</span>

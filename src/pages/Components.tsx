@@ -19,7 +19,9 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar, ChevronDown, MoreHorizontal } from "lucide-react";
+import { Calendar } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import ComponentPreviewCard from "@/components/retro/ComponentPreviewCard";
 
 const ComponentsPage = () => {
   const { toast } = useToast();
@@ -116,7 +118,7 @@ const ComponentsPage = () => {
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline">Menu <MoreHorizontal /></Button>
+                  <Button variant="outline">Menu</Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="z-[60]">
                   <DropdownMenuItem>Item One</DropdownMenuItem>
@@ -260,30 +262,89 @@ const ComponentsPage = () => {
       
       <section aria-labelledby="catalog" className="grid gap-6 md:grid-cols-3 component-grid">
         <h2 id="catalog" className="sr-only">Component Catalog</h2>
-        {[
-          { title: "Buttons", desc: "All button styles and sizes", href: "/components/buttons" },
-          { title: "Forms", desc: "Inputs, selects, and more", href: "/components/forms" },
-          { title: "Cards", desc: "Card layouts and content", href: "/components/cards" },
-          { title: "Modals", desc: "Dialogs, Sheets, Drawers", href: "/components/modals" },
-          { title: "Type", desc: "Typography scale and styles", href: "/components/type" },
-          { title: "Pickers", desc: "Dates and time inputs", href: "/components/pickers" },
-          { title: "Progress", desc: "Progress bars and more", href: "/components/progress" },
-          { title: "Tooltip", desc: "Tooltips and helpers", href: "/components/tooltip" },
-          { title: "Elevation", desc: "Shadows and depth", href: "/components/elevation" },
-          { title: "Spacing", desc: "Spacing and rhythm", href: "/components/spacing" },
-          { title: "Feedback", desc: "Alerts, toasts, skeletons", href: "/components/feedback" },
-          { title: "Navigation", desc: "Breadcrumbs, tabs, pagination", href: "/components/navigation" },
-        ].map((c) => (
-          <Card key={c.title}>
-            <CardHeader>
-              <CardTitle>{c.title}</CardTitle>
-              <CardDescription>{c.desc}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button asChild size="sm"><a href={c.href}>View Component</a></Button>
-            </CardContent>
-          </Card>
-        ))}
+        <TooltipProvider>
+          <ComponentPreviewCard title="Navigation" description="Tabs, Breadcrumbs, Pagination" href="/components/navigation">
+            <div className="space-y-3">
+              <Tabs defaultValue="one" className="w-full">
+                <TabsList>
+                  <TabsTrigger value="one">One</TabsTrigger>
+                  <TabsTrigger value="two">Two</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Buttons" description="Variants and sizes" href="/components/buttons">
+            <div className="flex flex-wrap gap-2">
+              <Button size="sm">Default</Button>
+              <Button size="sm" variant="secondary">Secondary</Button>
+              <Button size="sm" variant="outline">Outline</Button>
+            </div>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Forms" description="Inputs and controls" href="/components/forms">
+            <div className="space-y-2">
+              <Input placeholder="Email" />
+              <div className="flex items-center gap-2"><Checkbox id="o1" /> <label htmlFor="o1" className="text-sm">Opt‑in</label></div>
+            </div>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Cards" description="Layouts and content" href="/components/cards">
+            <div className="rounded-md border p-3 text-xs text-muted-foreground">A compact content block inside a card.</div>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Modals" description="Dialogs & Sheets" href="/components/modals">
+            <Dialog>
+              <DialogTrigger asChild><Button size="sm" variant="outline">Open</Button></DialogTrigger>
+              <DialogContent className="sm:max-w-xs"><DialogHeader><DialogTitle>Hi</DialogTitle><DialogDescription>Mini dialog.</DialogDescription></DialogHeader></DialogContent>
+            </Dialog>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Typography" description="Scale and styles" href="/components/type">
+            <div>
+              <div className="text-base">Heading</div>
+              <p className="text-sm text-muted-foreground">Body text sample.</p>
+            </div>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Tooltips" description="Hover/focus helpers" href="/components/tooltip">
+            <Tooltip>
+              <TooltipTrigger asChild><Button size="sm" variant="outline">Hover me</Button></TooltipTrigger>
+              <TooltipContent>Tip content</TooltipContent>
+            </Tooltip>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Elevation" description="Shadow levels" href="/components/elevation">
+            <div className="flex items-end gap-3">
+              <div className="h-6 w-10 rounded bg-card shadow-e1" />
+              <div className="h-8 w-10 rounded bg-card shadow-e3" />
+              <div className="h-10 w-10 rounded bg-card shadow-e5" />
+            </div>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Spacing" description="Rhythm utilities" href="/components/spacing">
+            <div className="space-y-[var(--space-8)]">
+              <div className="h-1 bg-muted rounded" />
+              <div className="h-1 bg-muted rounded" />
+              <div className="h-1 bg-muted rounded" />
+            </div>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Feedback" description="Alerts & toasts" href="/components/feedback">
+            <Alert className="border-[3px]"><AlertTitle>Info</AlertTitle><AlertDescription>Quick notice.</AlertDescription></Alert>
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Progress" description="Linear & circular" href="/components/progress">
+            <Progress value={60} />
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Pickers" description="Selects & more" href="/components/pickers">
+            <Select>
+              <SelectTrigger className="w-full"><SelectValue placeholder="Choose" /></SelectTrigger>
+              <SelectContent><SelectItem value="a">A</SelectItem><SelectItem value="b">B</SelectItem></SelectContent>
+            </Select>
+          </ComponentPreviewCard>
+        </TooltipProvider>
       </section>
     </main>
   );
