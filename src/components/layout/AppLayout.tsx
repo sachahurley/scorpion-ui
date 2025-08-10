@@ -24,6 +24,9 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
   const compactNav = theme === "retro" ? isTabletOrBelow : isMobile;
   const [showLoader, setShowLoader] = useState(false);
+  const [renderLoader, setRenderLoader] = useState(false);
+  const [loaderVisible, setLoaderVisible] = useState(false);
+  const pendingRef = useRef(false);
   const mainRef = useRef<HTMLDivElement | null>(null);
 
   // Retro-only: Scroll reset + manual restoration
@@ -37,11 +40,38 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     mainRef.current?.focus();
   }, [location.pathname, theme]);
 
-  // Retro-only: lazy loading overlay after 1s navigation delay
+  // Retro-only: show loader only if navigation takes >1s and fade away automatically
   useEffect(() => {
     if (theme !== "retro") return;
-    const t = window.setTimeout(() => setShowLoader(true), 1000);
-    return () => { window.clearTimeout(t); setShowLoader(false); };
+    pendingRef.current = true;
+    setRenderLoader(false);
+    setLoaderVisible(false);
+
+    const showTimer = window.setTimeout(() => {
+      if (pendingRef.current) {
+        setRenderLoader(true);
+        requestAnimationFrame(() => setLoaderVisible(true));
+      }
+    }, 1000);
+
+    // Mark as ready after next paint (approximate route ready)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        pendingRef.current = false;
+        // If loader is visible, fade it out and then unmount
+        if (renderLoader) {
+          setLoaderVisible(false);
+          window.setTimeout(() => setRenderLoader(false), 300);
+        }
+      });
+    });
+
+    return () => {
+      window.clearTimeout(showTimer);
+      pendingRef.current = false;
+      setLoaderVisible(false);
+      setRenderLoader(false);
+    };
   }, [location.pathname, theme]);
 
   return (
@@ -56,15 +86,23 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <div
           ref={mainRef}
           tabIndex={-1}
-          aria-busy={showLoader || undefined}
+          aria-busy={renderLoader || undefined}
           className={cn(theme === "retro" ? "px-4 pt-4 md:container md:px-0" : "container", "py-8")}
         >
           {children}
         </div>
       </main>
 
-      {theme === "retro" && showLoader && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-background/80 backdrop-blur-sm" role="status" aria-live="assertive" aria-atomic="true">
+      {theme === "retro" && renderLoader && (
+        <div
+          className={cn(
+            "fixed inset-0 z-50 grid place-items-center bg-background/80 backdrop-blur-sm transition-opacity duration-300",
+            loaderVisible ? "opacity-100" : "opacity-0"
+          )}
+          role="status"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
           <div className="flex flex-col items-center gap-3">
             <PixelSpinner size={40} />
             <span className="text-sm">Loading…</span>
