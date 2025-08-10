@@ -12,7 +12,7 @@ const PickersPage = () => {
   const [tags, setTags] = useState<string[]>([]);
 
   return (
-    <main className="space-y-6 retro-offset-header">
+    <main className="space-y-6">
       <header>
         <h1 className="text-2xl font-semibold">Pickers & Uploads</h1>
         <p className="text-sm text-muted-foreground">Retro-themed, accessible form utilities (light/dark aware).</p>

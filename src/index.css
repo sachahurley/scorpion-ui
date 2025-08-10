@@ -385,7 +385,7 @@ All colors MUST be HSL.
 
 /* Retro main container spacing from header (applies to selected <main>) */
 @layer utilities {
-  [data-theme="retro"] .retro-main, .theme-retro .retro-main { padding-top: var(--retro-content-margin); }
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main { padding-top: calc(var(--retro-header-h) + var(--retro-content-margin)); }
   [data-theme="retro"] .retro-main > .retro-main-content, .theme-retro .retro-main > .retro-main-content { margin-top: 0; }
 }
 
@@ -419,6 +419,13 @@ All colors MUST be HSL.
   [data-theme="retro"] .retro-offset-header, .theme-retro .retro-offset-header { padding-top: var(--retro-header-h); }
 }
 
+
+/* Debug helpers (opt-in): add data-debug-layout="true" on <html> to visualize layout */
+@layer utilities {
+  [data-debug-layout="true"] header[data-app-header] { outline: 3px solid hsl(220 90% 50% / 0.5); background-color: hsl(220 90% 60% / 0.08); }
+  [data-debug-layout="true"] .retro-main { outline: 3px solid hsl(0 90% 50% / 0.5); background-color: hsl(0 90% 60% / 0.06); }
+  [data-debug-layout="true"] aside { outline: 3px solid hsl(140 60% 40% / 0.5); }
+}
 
 @layer components {
   /* Retro typography helpers (use CSS vars; letter-spacing normalized by theme) */
