@@ -112,7 +112,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <AppSidebar open={compactNav ? open : true} onClose={close} />
 
       {/* Main content */}
-      <main className="bg-background">
+      <main className={cn("bg-background", theme === "retro" && "retro-main")}>
         <div
           ref={mainRef}
           tabIndex={-1}
