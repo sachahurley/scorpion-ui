@@ -53,9 +53,8 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     };
   }, [theme]);
 
-  // Retro-only: Scroll reset AFTER layout is calculated to avoid overlap
+  // Scroll reset AFTER layout is calculated to avoid overlap
   useEffect(() => {
-    if (theme !== "retro") return;
     if ("scrollRestoration" in window.history) {
       try {
         window.history.scrollRestoration = "manual";
@@ -68,7 +67,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         mainRef.current?.focus();
       });
     });
-  }, [location.pathname, theme]);
+  }, [location.pathname]);
 
   // Retro-only: show loader only if navigation takes >1s and fade away automatically
   useEffect(() => {
