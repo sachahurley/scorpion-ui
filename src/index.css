@@ -385,7 +385,7 @@ All colors MUST be HSL.
 
 /* Retro main container spacing from header (applies to selected <main>) */
 @layer utilities {
-  [data-theme="retro"] .retro-main, .theme-retro .retro-main { padding-top: var(--retro-header-h); }
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main { padding-top: calc(var(--retro-header-h) + var(--retro-content-margin)); }
   [data-theme="retro"] .retro-main > .retro-main-content, .theme-retro .retro-main > .retro-main-content { margin-top: 0; }
 }
 
