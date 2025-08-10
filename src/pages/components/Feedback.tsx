@@ -11,6 +11,7 @@ import CircularProgress from "@/components/retro/display/CircularProgress";
 import PixelSpinner from "@/components/retro/display/PixelSpinner";
 import { useAppTheme } from "@/theme/ThemeProvider";
 import { PixelCheck, PixelInfo } from "@/components/retro/icons/PixelIcons";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const FeedbackPage = () => {
   const { theme } = useAppTheme();
@@ -29,6 +30,17 @@ const FeedbackPage = () => {
 
   return (
     <main className="space-y-8">
+      <header aria-label="Breadcrumb" className="flex flex-wrap items-center justify-between gap-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbLink href="/components">Components</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbPage>Feedback</BreadcrumbPage></BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </header>
       <header>
         <h1 className="text-2xl font-bold tracking-tight">Feedback</h1>
         <p className="text-sm text-muted-foreground">Alerts, toasts, progress, loading, and status patterns</p>

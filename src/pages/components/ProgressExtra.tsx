@@ -2,12 +2,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { DesignTokensTable } from "@/components/docs/DesignTokensTable";
 import CircularProgress from "@/components/retro/display/CircularProgress";
 import { useState } from "react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const ProgressExtraPage = () => {
   const [val, setVal] = useState(64);
 
   return (
     <main className="space-y-6">
+      <header aria-label="Breadcrumb" className="flex flex-wrap items-center justify-between gap-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbLink href="/components">Components</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbPage>Progress</BreadcrumbPage></BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </header>
       <header>
         <h1 className="text-2xl font-semibold">Progress (Circular)</h1>
         <p className="text-sm text-muted-foreground">Retro-themed circular indicators with accessible contrast.</p>

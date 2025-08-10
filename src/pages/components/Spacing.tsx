@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const sizes = [0,4,8,12,16,20,24,32,40,48,56,64,80,96,112,128,144,160,192,224,256] as const;
 
@@ -15,6 +16,17 @@ const SpacingDocsPage = () => {
 
   return (
     <main className="space-y-6">
+      <header aria-label="Breadcrumb" className="flex flex-wrap items-center justify-between gap-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbLink href="/components">Components</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbPage>Spacing</BreadcrumbPage></BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </header>
       <header>
         <h1 className="text-2xl font-bold tracking-tight">Spacing</h1>
         <p className="text-sm text-muted-foreground">4px scale tokens; use via CSS vars with Tailwind arbitrary values</p>

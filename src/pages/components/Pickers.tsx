@@ -5,6 +5,7 @@ import RetroMultiSelect from "@/components/retro/forms/MultiSelect";
 import TimePicker from "@/components/retro/forms/TimePicker";
 import ColorPicker from "@/components/retro/forms/ColorPicker";
 import { useState } from "react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const PickersPage = () => {
   const [time, setTime] = useState("12:00");
@@ -13,6 +14,17 @@ const PickersPage = () => {
 
   return (
     <main className="space-y-6">
+      <header aria-label="Breadcrumb" className="flex flex-wrap items-center justify-between gap-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbLink href="/components">Components</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbPage>Pickers</BreadcrumbPage></BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </header>
       <header>
         <h1 className="text-2xl font-semibold">Pickers & Uploads</h1>
         <p className="text-sm text-muted-foreground">Retro-themed, accessible form utilities (light/dark aware).</p>

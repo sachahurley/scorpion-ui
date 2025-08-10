@@ -6,6 +6,7 @@ import RetroTooltip, { RetroTooltipContent, RetroTooltipTrigger, RetroTooltipPro
 import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
 import { useAppTheme } from "@/theme/ThemeProvider";
 import { PixelInfo } from "@/components/retro/icons/PixelIcons";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const TooltipDocsPage = () => { const { theme } = useAppTheme();
   useEffect(() => { document.title = "Scorpion UI · Components · Tooltip"; }, []);
@@ -20,6 +21,17 @@ const TooltipDocsPage = () => { const { theme } = useAppTheme();
 
   return (
     <main className="space-y-6">
+      <header aria-label="Breadcrumb" className="flex flex-wrap items-center justify-between gap-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbLink href="/components">Components</BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem><BreadcrumbPage>Tooltip</BreadcrumbPage></BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </header>
       <header>
         <h1 className="text-2xl font-bold tracking-tight">Tooltip</h1>
         <p className="text-sm text-muted-foreground">Directional arrows, smart collision, keyboard/focus accessible</p>
