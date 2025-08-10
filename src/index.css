@@ -375,7 +375,7 @@ All colors MUST be HSL.
   [data-theme="retro"] .retro-main-content, .theme-retro .retro-main-content {
     margin-left: var(--retro-content-margin);
     margin-right: var(--retro-content-margin);
-    margin-top: calc(var(--retro-header-h) + var(--retro-content-margin));
+    margin-top: var(--retro-content-margin);
     margin-bottom: var(--retro-content-margin);
     padding-top: 0;
     position: relative;
