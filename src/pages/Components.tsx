@@ -22,6 +22,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import ComponentPreviewCard from "@/components/retro/ComponentPreviewCard";
+import PixelScorpion from "@/components/retro/display/PixelScorpion";
 
 const ComponentsPage = () => {
   const { toast } = useToast();
@@ -336,6 +337,12 @@ const ComponentsPage = () => {
 
           <ComponentPreviewCard title="Progress" description="Linear & circular" href="/components/progress">
             <Progress value={60} />
+          </ComponentPreviewCard>
+
+          <ComponentPreviewCard title="Loading" description="Loading states and progress indicators" href="/components/loading" ctaText="Explore Loading">
+            <div className="flex items-center gap-3">
+              <PixelScorpion size={40} />
+            </div>
           </ComponentPreviewCard>
 
           <ComponentPreviewCard title="Pickers" description="Selects & more" href="/components/pickers">

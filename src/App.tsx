@@ -20,6 +20,7 @@ import TooltipDocsPage from "./pages/components/Tooltip";
 import ElevationDocsPage from "./pages/components/Elevation";
 import SpacingDocsPage from "./pages/components/Spacing";
 import FeedbackPage from "./pages/components/Feedback";
+import LoadingPage from "./pages/components/Loading";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/components/elevation" element={<ElevationDocsPage />} />
           <Route path="/components/spacing" element={<SpacingDocsPage />} />
           <Route path="/components/feedback" element={<FeedbackPage />} />
+          <Route path="/components/loading" element={<LoadingPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

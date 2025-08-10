@@ -67,9 +67,9 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
                 Components
               </span>
 {theme === "retro" ? (
-                  <PixelChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} />
+                  <PixelChevronDown className={cn("components-chevron h-4 w-4", groupOpen && "active")} aria-hidden />
                 ) : (
-                  <ChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} />
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} aria-hidden />
                 )}
             </button>
             {groupOpen && (
@@ -94,6 +94,9 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
                 </NavLink>
                 <NavLink to="/components/feedback" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>
                   Feedback
+                </NavLink>
+                <NavLink to="/components/loading" className={({ isActive }) => cn(linkCls({ isActive }), "pl-8")} onClick={onClose}>
+                  Loading
                 </NavLink>
               </div>
             )}

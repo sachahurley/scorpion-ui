@@ -375,7 +375,7 @@ All colors MUST be HSL.
   [data-theme="retro"] .retro-main-content, .theme-retro .retro-main-content {
     margin-left: var(--retro-content-margin);
     margin-right: var(--retro-content-margin);
-    margin-top: var(--retro-content-margin);
+    margin-top: calc(var(--retro-header-h) + var(--retro-content-margin));
     margin-bottom: var(--retro-content-margin);
     padding-top: 0;
     position: relative;
@@ -383,11 +383,21 @@ All colors MUST be HSL.
   }
 }
 
+/* Retro chevron state (retro-only) and speed utilities */
+@layer utilities {
+  [data-theme="retro"] .components-chevron,
+  .theme-retro .components-chevron { transform: rotate(0deg); transition: transform 0.3s ease; }
+  [data-theme="retro"] .components-chevron.active,
+  .theme-retro .components-chevron.active { transform: rotate(180deg); }
+  [data-theme="retro"] .anim-speed-slow, .theme-retro .anim-speed-slow { animation-duration: 2s !important; }
+  [data-theme="retro"] .anim-speed-fast, .theme-retro .anim-speed-fast { animation-duration: 0.6s !important; }
+}
+
 /* Retro content margin by breakpoint */
 @media (min-width: 768px) and (max-width: 1023px) {
   [data-theme="retro"], .theme-retro {
-    --retro-content-margin: 16px;
-    --retro-content-top-gap: 16px;
+    --retro-content-margin: 24px;
+    --retro-content-top-gap: 24px;
   }
 }
 @media (min-width: 1024px) {
@@ -432,6 +442,7 @@ All colors MUST be HSL.
 @media (prefers-reduced-motion: reduce) {
   [data-theme="retro"] .retro-logo-animate { animation: none; }
   .animate-pixel-spin { animation: none !important; }
+  .animate-scorpion-bob { animation: none !important; }
 }
 
 @keyframes retro-logo-color {
