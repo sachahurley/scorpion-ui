@@ -488,6 +488,29 @@ All colors MUST be HSL.
     /* Prevent accidental horizontal scroll on mobile */
     [data-theme="retro"] body { overflow-x: clip; }
 
+    /* Retro: Cards full-width and content wrapping on mobile */
+    [data-theme="retro"] .card,
+    .theme-retro .card {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    [data-theme="retro"] .card .card-content,
+    .theme-retro .card .card-content {
+      display: flex;
+      flex-wrap: wrap;
+      overflow-x: hidden;
+      overflow-wrap: anywhere;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+    [data-theme="retro"] .card .card-content > *,
+    .theme-retro .card .card-content > * {
+      min-width: 0;
+      flex-shrink: 1;
+    }
   }
   /* Tablet: 1 column with wider gaps (can be 2x1 via explicit card spans) */
   @media (min-width: 768px) and (max-width: 1024px) {
