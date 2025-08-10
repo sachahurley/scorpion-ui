@@ -442,6 +442,12 @@ All colors MUST be HSL.
 /* Retro-only responsive grid utilities */
 @layer utilities {
   /* Mobile: Single column, 16px gaps and margins implied by layout */
+  /* Stretch and prevent overflow in grid items */
+  [data-theme="retro"] .component-grid,
+  .theme-retro .component-grid { justify-items: stretch; }
+  [data-theme="retro"] .component-grid > *,
+  .theme-retro .component-grid > * { min-width: 0; }
+
   @media (max-width: 768px) {
     [data-theme="retro"] .component-grid {
       display: grid;
@@ -449,7 +455,7 @@ All colors MUST be HSL.
       gap: 16px;
     }
     /* Prevent accidental horizontal scroll on mobile */
-    [data-theme="retro"] body { overflow-x: hidden; }
+    [data-theme="retro"] body { overflow-x: clip; }
 
   }
   /* Tablet: 1 column with wider gaps (can be 2x1 via explicit card spans) */
