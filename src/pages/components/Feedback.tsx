@@ -38,6 +38,51 @@ const FeedbackPage = () => {
       <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
+            <CardTitle>Alerts</CardTitle>
+            <CardDescription>Success, warning, error, info (dismissible and persistent)</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Alert className="border-[3px]" style={{ borderColor: theme === 'retro' ? `hsl(var(--feedback-success))` : undefined }}>
+              <AlertTitle className="flex items-center gap-2">{theme === 'retro' ? <PixelCheck className="h-4 w-4" /> : null} Success</AlertTitle>
+              <AlertDescription>Action completed successfully.</AlertDescription>
+            </Alert>
+            <Alert className="border-[3px]" style={{ borderColor: theme === 'retro' ? `hsl(var(--feedback-warning))` : undefined }}>
+              <AlertTitle>Warning</AlertTitle>
+              <AlertDescription>Something needs your attention.</AlertDescription>
+            </Alert>
+            <Alert className="border-[3px]" style={{ borderColor: theme === 'retro' ? `hsl(var(--feedback-error))` : undefined }}>
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>There was a problem with your request.</AlertDescription>
+            </Alert>
+            <Alert className="border-[3px]" style={{ borderColor: theme === 'retro' ? `hsl(var(--feedback-info))` : undefined }}>
+              <AlertTitle className="flex items-center gap-2">{theme === 'retro' ? <PixelInfo className="h-4 w-4" /> : null} Info</AlertTitle>
+              <AlertDescription>Heads up — this is important.</AlertDescription>
+            </Alert>
+          </CardContent>
+        </Card>
+
+        {/* Toasts */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Toasts</CardTitle>
+            <CardDescription>Variants and positions</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              <Button onClick={() => toast.success("Saved!")}>Success</Button>
+              <Button onClick={() => toast.message("Heads up", { description: "Some info for you" })}>Info</Button>
+              <Button onClick={() => toast.warning("Careful!")}>Warning</Button>
+              <Button variant="destructive" onClick={() => toast.error("Error occurred")}>Error</Button>
+            </div>
+            <p className="text-xs text-muted-foreground">To change position, pass <code>position</code> to the Toaster in App.tsx.</p>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Progress */}
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
+        <Card>
+          <CardHeader>
             <CardTitle>Linear Progress</CardTitle>
             <CardDescription>Determinate and indeterminate</CardDescription>
           </CardHeader>
