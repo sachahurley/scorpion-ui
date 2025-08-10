@@ -22,7 +22,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
   const linkCls = ({ isActive }: { isActive: boolean }) =>
     cn(
       "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand",
-      isActive ? "bg-sidebar-accent text-foreground" : "hover:bg-accent hover:text-accent-foreground"
+      isActive ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-accent hover:text-accent-foreground"
     );
 
   return (
