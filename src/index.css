@@ -250,8 +250,8 @@ All colors MUST be HSL.
   --primary: 24 6% 85%;         /* ~stone-200 */
   --primary-foreground: 24 9% 10%;
 
-  --secondary: 22 87% 26%; /* Tailwind yellow-900 approximation */
-  --secondary-foreground: 0 0% 100%;
+  --secondary: 45 96% 40%; /* Tailwind yellow-600 approximation */
+  --secondary-foreground: 24 9% 10%; /* dark text for contrast */
 
   --muted: 24 8% 16%;
   --muted-foreground: 30 6% 65%;
