@@ -414,6 +414,12 @@ All colors MUST be HSL.
   }
 }
 
+/* Page-level header offset helper: adds header height only; combined with retro-main padding results in header+margin total */
+@layer utilities {
+  [data-theme="retro"] .retro-offset-header, .theme-retro .retro-offset-header { padding-top: var(--retro-header-h); }
+}
+
+
 @layer components {
   /* Retro typography helpers (use CSS vars; letter-spacing normalized by theme) */
   .type-theme { font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; letter-spacing: normal; }
