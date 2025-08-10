@@ -384,16 +384,16 @@ All colors MUST be HSL.
 }
 
 /* Retro content margin by breakpoint */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   [data-theme="retro"], .theme-retro {
-    --retro-content-margin: 24px;
-    --retro-content-top-gap: 20px;
+    --retro-content-margin: 16px;
+    --retro-content-top-gap: 16px;
   }
 }
 @media (min-width: 1024px) {
   [data-theme="retro"], .theme-retro {
     --retro-content-margin: 32px;
-    --retro-content-top-gap: 24px;
+    --retro-content-top-gap: 32px;
   }
 }
 
