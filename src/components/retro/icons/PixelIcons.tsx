@@ -98,6 +98,14 @@ export const PixelChevronDown = ({ size = 24, className, ...props }: PixelIconPr
     "1111111",
   ], size, className);
 
+export const PixelChevronUp = ({ size = 24, className, ...props }: PixelIconProps) =>
+  renderGrid([
+    "1111111",
+    "0111110",
+    "0011100",
+    "0000000",
+  ], size, className);
+
 export const PixelLightning = ({ size = 32, className, ...props }: PixelIconProps) =>
   renderGrid([
     "0000110",
