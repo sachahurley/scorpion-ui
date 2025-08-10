@@ -13,7 +13,7 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
   const { theme, toggleTheme, retroDark, setRetroDark } = useAppTheme();
 
   return (
-    <header className={cn("sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60", className)}>
+    <header data-app-header className={cn("sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60", className)}>
       <div className={cn(
         "flex h-16 items-center justify-between gap-4",
         theme === "retro" ? "w-full px-4" : "container"

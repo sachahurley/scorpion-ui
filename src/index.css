@@ -211,6 +211,11 @@ All colors MUST be HSL.
   --sidebar-background: 48 100% 98%;
   --sidebar-accent: 54 96% 88%;
 
+  /* Retro content layout variables */
+  --retro-header-h: 64px; /* default; updated via JS */
+  --retro-content-margin: 16px; /* default mobile */
+  --retro-content-top-gap: 16px; /* default mobile */
+
   /* Modular type scale (retro only) */
   --font-size-2b: 0.75rem;  /* 12px */
   --font-size-1b: 0.875rem; /* 14px */
@@ -246,12 +251,13 @@ All colors MUST be HSL.
   --popover: 24 9% 10%;
   --popover-foreground: 210 40% 98%;
 
-  /* Primary: lighter for contrast on dark */
-  --primary: 24 6% 85%;         /* ~stone-200 */
+  /* Primary: yellow for emphasis in dark mode */
+  --primary: var(--fire-yellow);
   --primary-foreground: 24 9% 10%;
 
-  --secondary: 45 96% 40%; /* Tailwind yellow-600 approximation */
-  --secondary-foreground: 24 9% 10%; /* dark text for contrast */
+  /* Secondary: neutral stone tone */
+  --secondary: 24 9% 14%;
+  --secondary-foreground: 0 0% 98%;
 
   --muted: 24 8% 16%;
   --muted-foreground: 30 6% 65%;
@@ -362,6 +368,33 @@ All colors MUST be HSL.
   [data-theme="retro"] .shadow-e4, .theme-retro .shadow-e4 { box-shadow: var(--elevation-4); }
   [data-theme="retro"] .shadow-e5, .theme-retro .shadow-e5 { box-shadow: var(--elevation-5); }
   [data-theme="retro"] .shadow-e6, .theme-retro .shadow-e6 { box-shadow: var(--elevation-6); }
+}
+
+/* Retro main content spacing utility */
+@layer utilities {
+  [data-theme="retro"] .retro-main-content, .theme-retro .retro-main-content {
+    margin-left: var(--retro-content-margin);
+    margin-right: var(--retro-content-margin);
+    margin-top: calc(var(--retro-header-h) + var(--retro-content-top-gap));
+    margin-bottom: var(--retro-content-margin);
+    padding-top: 0;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Retro content margin by breakpoint */
+@media (min-width: 768px) {
+  [data-theme="retro"], .theme-retro {
+    --retro-content-margin: 24px;
+    --retro-content-top-gap: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  [data-theme="retro"], .theme-retro {
+    --retro-content-margin: 32px;
+    --retro-content-top-gap: 24px;
+  }
 }
 
 @layer components {

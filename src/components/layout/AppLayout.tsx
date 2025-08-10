@@ -29,15 +29,45 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const pendingRef = useRef(false);
   const mainRef = useRef<HTMLDivElement | null>(null);
 
-  // Retro-only: Scroll reset + manual restoration
+  // Retro-only: Dynamic header height CSS var and scroll reset after layout
+  useEffect(() => {
+    if (theme !== "retro") return;
+    const header = document.querySelector(
+      'header[data-app-header]'
+    ) as HTMLElement | null;
+    if (!header) return;
+
+    const setVar = () => {
+      const h = Math.ceil(header.getBoundingClientRect().height);
+      document.documentElement.style.setProperty("--retro-header-h", `${h}px`);
+    };
+
+    setVar();
+    const ro = new ResizeObserver(setVar);
+    ro.observe(header);
+    window.addEventListener("resize", setVar);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", setVar);
+    };
+  }, [theme]);
+
+  // Retro-only: Scroll reset AFTER layout is calculated to avoid overlap
   useEffect(() => {
     if (theme !== "retro") return;
     if ("scrollRestoration" in window.history) {
-      try { window.history.scrollRestoration = "manual"; } catch {}
+      try {
+        window.history.scrollRestoration = "manual";
+      } catch {}
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    // Focus main for a11y
-    mainRef.current?.focus();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        // Focus main for a11y
+        mainRef.current?.focus();
+      });
+    });
   }, [location.pathname, theme]);
 
   // Retro-only: show loader only if navigation takes >1s and fade away automatically
@@ -89,7 +119,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           aria-busy={renderLoader || undefined}
           className={cn(
             theme === "retro"
-              ? "m-4 lg:m-8 px-4 md:container md:px-0"
+              ? "retro-main-content"
               : "m-4 lg:m-8 container"
           )}
         >
