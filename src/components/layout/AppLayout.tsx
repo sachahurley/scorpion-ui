@@ -53,8 +53,9 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     };
   }, [theme]);
 
-  // Scroll reset AFTER layout is calculated to avoid overlap
+  // Scroll handling (non-retro only): reset to top and focus main for a11y
   useEffect(() => {
+    if (theme === "retro") return;
     if ("scrollRestoration" in window.history) {
       try {
         window.history.scrollRestoration = "manual";
@@ -63,11 +64,28 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-        // Focus main for a11y
         mainRef.current?.focus();
       });
     });
-  }, [location.pathname]);
+  }, [location.pathname, theme]);
+
+  // Retro-only: scroll reset safeguard to ensure default position without JS scrolling
+  useEffect(() => {
+    if (theme !== "retro") return;
+    if (window.location.hash) return; // respect hash navigation
+    const container = mainRef.current;
+    if (!container) return;
+    if (container.scrollTop !== 0) {
+      container.scrollTop = 0;
+    }
+    let parent = container.parentElement;
+    while (parent && parent !== document.body) {
+      if (parent.scrollTop !== 0) {
+        parent.scrollTop = 0;
+      }
+      parent = parent.parentElement;
+    }
+  }, [location.pathname, theme]);
 
   // Retro-only: show loader only if navigation takes >1s and fade away automatically
   useEffect(() => {
