@@ -87,7 +87,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           ref={mainRef}
           tabIndex={-1}
           aria-busy={renderLoader || undefined}
-          className={cn(theme === "retro" ? "px-4 pt-4 md:container md:px-0" : "container", "py-8")}
+          className={cn(theme === "retro" ? "px-4 pt-6 lg:pt-8 md:container md:px-0" : "container pt-6 lg:pt-8", "py-8")}
         >
           {children}
         </div>
