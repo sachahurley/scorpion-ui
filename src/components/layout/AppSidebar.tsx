@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { useAppTheme } from "@/theme/ThemeProvider";
-import { PixelHome, PixelGrid, PixelChevronDown, PixelChevronUp } from "@/components/retro/icons/PixelIcons";
+import { PixelHome, PixelGrid, PixelChevronUp } from "@/components/retro/icons/PixelIcons";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 
@@ -67,11 +67,7 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
                 Components
               </span>
 {theme === "retro" ? (
-                  groupOpen ? (
-                    <PixelChevronUp className={cn("h-4 w-4")} aria-hidden />
-                  ) : (
-                    <PixelChevronDown className={cn("h-4 w-4")} aria-hidden />
-                  )
+                  <PixelChevronUp className={cn("h-4 w-4 transition-transform", !groupOpen && "rotate-180")} aria-hidden />
                 ) : (
                   <ChevronDown className={cn("h-4 w-4 transition-transform", groupOpen ? "rotate-180" : "rotate-0")} aria-hidden />
                 )}
