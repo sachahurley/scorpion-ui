@@ -1,15 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Rocket, Sparkles, Shield } from "lucide-react";
 import RetroWordmark from "@/components/retro/RetroWordmark";
+import ScorpionImageV2 from "@/components/retro/display/ScorpionImageV2";
 import { useAppTheme } from "@/theme/ThemeProvider";
-import { PixelLightning, PixelSparkles, PixelAccessibility } from "@/components/retro/icons/PixelIcons";
+import { useScrollReset } from "@/hooks/use-scroll-reset";
+import { PixelWindLines, PixelRobotHead, PixelPersonWide } from "@/components/retro/icons/PixelIcons";
+import VisitorCounter from "@/components/ui/visitor-counter";
 
 const Index = () => {
   const { theme } = useAppTheme();
+  
+  // Reset scroll position when navigating to this page
+  useScrollReset();
+  
   return (
     <main>
       <section className="mb-8">
@@ -17,7 +23,10 @@ const Index = () => {
           {theme === "retro" ? (
             <>
               <h1 className="sr-only">Scorpion UI</h1>
-              <RetroWordmark className="w-full max-w-[360px] sm:max-w-[520px] md:max-w-[640px] text-brand-foreground/90" />
+              <div className="flex flex-col items-start gap-4 sm:gap-6">
+                <ScorpionImageV2 />
+                <RetroWordmark className="w-full max-w-[360px] sm:max-w-[520px] md:max-w-[640px] text-brand-foreground/90" />
+              </div>
             </>
           ) : (
             <h1 className="text-3xl md:text-4xl font-bold text-brand-foreground tracking-tight">
@@ -53,7 +62,7 @@ const Index = () => {
             <div className="mb-2">
               <span className="inline-block" aria-hidden>
                 {theme === "retro" ? (
-                  <PixelLightning className="text-foreground" />
+                  <PixelWindLines className="text-foreground" />
                 ) : (
                   <Rocket />
                 )}
@@ -72,7 +81,7 @@ const Index = () => {
             <div className="mb-2">
               <span className="inline-block" aria-hidden>
                 {theme === "retro" ? (
-                  <PixelSparkles className="text-foreground" />
+                  <PixelRobotHead className="text-foreground" />
                 ) : (
                   <Sparkles />
                 )}
@@ -91,7 +100,7 @@ const Index = () => {
             <div className="mb-2">
               <span className="inline-block" aria-hidden>
                 {theme === "retro" ? (
-                  <PixelAccessibility className="text-foreground" />
+                  <PixelPersonWide className="text-foreground" />
                 ) : (
                   <Shield />
                 )}
@@ -106,43 +115,21 @@ const Index = () => {
         </Card>
       </section>
 
-      <section aria-labelledby="try" className="mt-8 grid component-grid">
-        <Card className="md:col-span-2">
-          <CardHeader>
-            <CardTitle>Try the essentials</CardTitle>
-            <CardDescription>Button, Input, Badge, and Avatar</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label className="mb-2 block text-sm font-medium">Your email</label>
-                <div className="flex gap-2">
-                  <Input placeholder="you@example.com" aria-label="Email address" />
-                  <Button>Subscribe</Button>
-                </div>
-                <p className="mt-2 text-xs text-muted-foreground">We care about your data. No spam.</p>
-              </div>
-
+      <section aria-labelledby="resources" className="mt-8 grid gap-6 md:grid-cols-2 component-grid">
+        <Card>
+          <CardContent className="pt-4 sm:pt-6">
+            <div className="flex flex-col items-start space-y-4">
+              <Avatar className="h-16 w-16">
+                <AvatarImage src="/avatar_8bit.png" alt="Sacha Hurley" />
+                <AvatarFallback className="text-lg">SH</AvatarFallback>
+              </Avatar>
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <Badge>New</Badge>
-                  <Badge variant="secondary">Beta</Badge>
-                  <Badge variant="outline">Info</Badge>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarFallback aria-label="Sample user">SU</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="text-sm font-medium">Sample User</p>
-                    <p className="text-xs text-muted-foreground">avatar + fallback</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Button size="sm">Default</Button>
-                  <Button size="sm" variant="secondary">Secondary</Button>
-                  <Button size="sm" variant="outline">Outline</Button>
-                </div>
+                <p className="text-sm text-muted-foreground">
+                  <a href="https://sacha.cool" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline">sacha.cool</a>
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  I created Scorpion UI to learn React, TypeScript, and modern design systems while using as many AI tools as possible to re-invent my design workflow.
+                </p>
               </div>
             </div>
           </CardContent>
@@ -162,6 +149,13 @@ const Index = () => {
           </CardContent>
         </Card>
       </section>
+
+      {/* Visitor counter at bottom of page */}
+      <footer className="mt-8 mb-4">
+        <div className="flex justify-start">
+          <VisitorCounter />
+        </div>
+      </footer>
     </main>
   );
 };

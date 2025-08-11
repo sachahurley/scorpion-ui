@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { useAppTheme } from "@/theme/ThemeProvider";
+import ScorpionImageV2 from "@/components/retro/display/ScorpionImageV2";
 
 interface AppHeaderProps {
   onToggleSidebar: () => void;
@@ -22,8 +23,9 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
           <Button variant="outline" size="icon" aria-label="Toggle navigation" onClick={onToggleSidebar} className={cn(theme === "retro" ? "lg:hidden" : "md:hidden", "aspect-square")}>
             <Menu />
           </Button>
-          <a href="/" className="font-semibold tracking-tight text-lg">
-            Scorpion UI
+          <a href="/" className="flex items-center gap-2 font-semibold tracking-tight text-lg">
+            <ScorpionImageV2 variant="header" className="w-6 h-6 flex-shrink-0" />
+            <span>Scorpion UI</span>
           </a>
         </div>
 
@@ -36,9 +38,6 @@ const AppHeader = ({ onToggleSidebar, className }: AppHeaderProps) => {
               <Moon className={cn("h-4 w-4", retroDark ? "opacity-100" : "opacity-40")} />
             </div>
           )}
-          <Button onClick={toggleTheme} variant="outline">
-            {theme === "retro" ? "Switch to Modern" : "Switch to Retro"}
-          </Button>
         </div>
       </div>
     </header>

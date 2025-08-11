@@ -7,6 +7,16 @@ All colors MUST be HSL.
 */
 
 @layer base {
+  /* Global minimum width for mobile responsiveness */
+  html {
+    min-width: 320px;
+  }
+
+  body {
+    min-width: 320px;
+    overflow-x: hidden;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -385,8 +395,55 @@ All colors MUST be HSL.
 
 /* Retro main container spacing from header (applies to selected <main>) */
 @layer utilities {
-  [data-theme="retro"] .retro-main, .theme-retro .retro-main { padding-top: var(--retro-header-h); }
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main { 
+    padding-top: var(--retro-content-top-gap); /* Use responsive padding instead of fixed header height */
+    min-width: 320px; /* Ensure minimum width for mobile */
+    width: 100%;
+  }
   [data-theme="retro"] .retro-main > .retro-main-content, .theme-retro .retro-main > .retro-main-content { margin-top: 0; }
+
+  /* General main container minimum width */
+  main {
+    min-width: 320px;
+    width: 100%;
+  }
+
+  /* Container utilities */
+  .container {
+    min-width: 320px;
+    width: 100%;
+  }
+}
+
+/* Responsive padding-top for retro main element */
+@media (min-width: 320px) and (max-width: 374px) {
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main {
+    padding-top: 12px; /* Very small mobile: 12px */
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main {
+    padding-top: 16px; /* Enhanced mobile: 16px */
+  }
+}
+
+@media (max-width: 767px) {
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main {
+    padding-top: 16px; /* Mobile fallback: 16px */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main {
+    padding-top: 24px; /* Tablet: 24px */
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-theme="retro"] .retro-main, .theme-retro .retro-main {
+    padding-top: 32px; /* Desktop: 32px */
+  }
 }
 
 
@@ -470,6 +527,32 @@ All colors MUST be HSL.
   50% { color: hsl(var(--logo-anim-mid)); }
 }
 
+/* Mobile and tablet spacing for all themes */
+@layer utilities {
+  /* Apply 16px gap on mobile for all themes */
+  @media (max-width: 767px) {
+    .component-grid {
+      gap: 16px !important;
+    }
+    
+    /* Standardize section spacing to 16px on mobile */
+    .mb-8 {
+      margin-bottom: 16px !important;
+    }
+    
+    .mt-8 {
+      margin-top: 16px !important;
+    }
+  }
+  
+  /* Apply 24px gap on tablet for all themes */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .component-grid {
+      gap: 24px !important;
+    }
+  }
+}
+
 /* Retro-only responsive grid utilities */
 @layer utilities {
   /* Mobile: Single column, 16px gaps and margins implied by layout */
@@ -479,7 +562,28 @@ All colors MUST be HSL.
   [data-theme="retro"] .component-grid > *,
   .theme-retro .component-grid > * { min-width: 0; }
 
-  @media (max-width: 768px) {
+  /* 320px minimum support */
+  @media (min-width: 320px) and (max-width: 374px) {
+    [data-theme="retro"] .component-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 0 8px;
+    }
+    /* Extra tight spacing for very small screens - removed horizontal padding */
+  }
+
+  /* Enhanced mobile (375px+) */
+  @media (min-width: 375px) and (max-width: 767px) {
+    [data-theme="retro"] .component-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  /* Standard mobile fallback */
+  @media (max-width: 767px) {
     [data-theme="retro"] .component-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -490,40 +594,84 @@ All colors MUST be HSL.
 
     /* Retro: Cards full-width and content wrapping on mobile */
     [data-theme="retro"] .card,
-    .theme-retro .card {
+    .theme-retro .card,
+    [data-theme="retro"] .rounded-lg.border.bg-card,
+    .theme-retro .rounded-lg.border.bg-card {
       width: 100%;
       min-width: 100%;
       max-width: 100%;
       margin-left: 0;
       margin-right: 0;
+      box-sizing: border-box;
     }
     [data-theme="retro"] .card .card-content,
-    .theme-retro .card .card-content {
+    .theme-retro .card .card-content,
+    [data-theme="retro"] .rounded-lg.border.bg-card .p-6,
+    .theme-retro .rounded-lg.border.bg-card .p-6 {
       display: flex;
       flex-wrap: wrap;
       overflow-x: hidden;
       overflow-wrap: anywhere;
       word-wrap: break-word;
       white-space: normal;
+      width: 100%;
+      min-width: 0;
     }
     [data-theme="retro"] .card .card-content > *,
-    .theme-retro .card .card-content > * {
+    .theme-retro .card .card-content > *,
+    [data-theme="retro"] .rounded-lg.border.bg-card .p-6 > *,
+    .theme-retro .rounded-lg.border.bg-card .p-6 > * {
       min-width: 0;
       flex-shrink: 1;
+      max-width: 100%;
     }
   }
-  /* Tablet: 1 column with wider gaps (can be 2x1 via explicit card spans) */
+  /* Tablet: Respect Tailwind grid classes, just adjust gaps */
   @media (min-width: 768px) and (max-width: 1024px) {
     [data-theme="retro"] .component-grid {
-      grid-template-columns: 1fr;
       gap: 24px;
     }
+    
+    /* Retro: Cards responsive on tablet */
+    [data-theme="retro"] .card,
+    .theme-retro .card,
+    [data-theme="retro"] .rounded-lg.border.bg-card,
+    .theme-retro .rounded-lg.border.bg-card {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    [data-theme="retro"] .card .card-content,
+    .theme-retro .card .card-content,
+    [data-theme="retro"] .rounded-lg.border.bg-card .p-6,
+    .theme-retro .rounded-lg.border.bg-card .p-6 {
+      width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
+    }
   }
-  /* Desktop: auto-fit into 300px min cards for 2-3 columns */
+  /* Desktop: Respect Tailwind grid classes, just adjust gaps */
   @media (min-width: 1024px) {
     [data-theme="retro"] .component-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
+    }
+    
+    /* Retro: Cards responsive on desktop */
+    [data-theme="retro"] .card,
+    .theme-retro .card,
+    [data-theme="retro"] .rounded-lg.border.bg-card,
+    .theme-retro .rounded-lg.border.bg-card {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    [data-theme="retro"] .card .card-content,
+    .theme-retro .card .card-content,
+    [data-theme="retro"] .rounded-lg.border.bg-card .p-6,
+    .theme-retro .rounded-lg.border.bg-card .p-6 {
+      width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
     }
   }
 }

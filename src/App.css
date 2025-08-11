@@ -34,9 +34,55 @@
 }
 
 .card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 2em;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/* Card content overflow and wrapping fixes */
+.card-content {
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+/* For flex containers inside cards */
+.card-content .flex {
+  flex-wrap: wrap;
+}
+
+.card-content > * {
+  max-width: 100%;
+}
+
+/* Mobile-specific card adjustments */
+@media (max-width: 640px) {
+  .card {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0.5rem;
+  }
+  
+  .card-content {
+    padding: 1rem;
+  }
+  
+  /* Ensure buttons and inputs wrap properly */
+  .card-content .flex {
+    flex-direction: column;
+  }
+  
+  .card-content input,
+  .card-content button {
+    width: 100%;
+    max-width: 100%;
+  }
 }

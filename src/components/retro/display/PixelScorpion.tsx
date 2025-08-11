@@ -3,21 +3,28 @@ import { cn } from "@/lib/utils";
 
 export interface PixelScorpionProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number; // px
+  loadingText?: string; // Customizable loading text for screen readers
 }
 
 /*
   PixelScorpion
   - 16x16 pixel grid SVG, crisp edges
   - Uses theme tokens: brand (body) and fire-yellow (highlight)
+  - Enhanced accessibility with customizable loading text
 */
-const PixelScorpion = ({ size = 56, className, ...props }: PixelScorpionProps) => {
+const PixelScorpion = ({ 
+  size = 56, 
+  className, 
+  loadingText = "Loading content, please wait…",
+  ...props 
+}: PixelScorpionProps) => {
   const px = size / 16; // pixel size
   return (
     <div
       role="status"
-      aria-label="Loading"
+      aria-label={loadingText}
       className={cn("inline-block animate-scorpion-bob", className)}
-      style={{ width: size, height: size, imageRendering: "pixelated" as any }}
+      style={{ width: size, height: size, imageRendering: "pixelated" as React.CSSProperties["imageRendering"] }}
       {...props}
     >
       <svg
@@ -26,6 +33,8 @@ const PixelScorpion = ({ size = 56, className, ...props }: PixelScorpionProps) =
         height={size}
         shapeRendering="crispEdges"
         aria-hidden="true"
+        role="img"
+        aria-label="Pixel art scorpion loading animation"
       >
         {/* Body color */}
         <defs>
@@ -67,7 +76,7 @@ const PixelScorpion = ({ size = 56, className, ...props }: PixelScorpionProps) =
           <rect key={`h-${i}`} x={x} y={y} width="1" height="1" fill={`hsl(var(--fire-yellow))`} />
         ))}
       </svg>
-      <span className="sr-only">Loading…</span>
+      <span className="sr-only">{loadingText}</span>
     </div>
   );
 };

@@ -1,103 +1,154 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo, type ReactNode } from "react";
 import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useIsTabletOrBelow } from "@/hooks/use-compact-nav";
+import { useRoutePerformance } from "@/hooks/use-performance";
+import { useScrollReset } from "@/hooks/use-scroll-reset";
 import { cn } from "@/lib/utils";
 import { useAppTheme } from "@/theme/ThemeProvider";
 import { useLocation } from "react-router-dom";
-import PixelScorpion from "@/components/retro/display/PixelScorpion";
+import RetroScorpion from "@/components/retro/display/RetroScorpion";
 
 interface AppLayoutProps {
   children: ReactNode;
 }
 
+// Consolidated loading state interface
+interface LoadingState {
+  isLoading: boolean;
+  isVisible: boolean;
+  shouldRender: boolean;
+}
+
 const AppLayout = ({ children }: AppLayoutProps) => {
+  const { theme } = useAppTheme();
   const isMobile = useIsMobile();
   const isTabletOrBelow = useIsTabletOrBelow();
-  const [open, setOpen] = useState(false);
-  const { theme } = useAppTheme();
+  
+  // Initialize sidebar closed state based on theme and screen size
+  const [open, setOpen] = useState(() => {
+    // On initial render, assume mobile/tablet should be closed
+    // This prevents the flash of open sidebar before hooks determine screen size
+    return false;
+  });
+  
   const location = useLocation();
+  const { startRouteTimer, endRouteTimer } = useRoutePerformance();
 
-  const toggle = () => setOpen((o) => !o);
-  const close = () => setOpen(false);
+  // Consolidated loading state
+  const [loadingState, setLoadingState] = useState<LoadingState>({
+    isLoading: false,
+    isVisible: false,
+    shouldRender: false
+  });
 
-  const compactNav = theme === "retro" ? isTabletOrBelow : isMobile;
-  const [showLoader, setShowLoader] = useState(false);
-  const [renderLoader, setRenderLoader] = useState(false);
-  const [loaderVisible, setLoaderVisible] = useState(false);
+  const toggle = useCallback(() => setOpen((o) => !o), []);
+  const close = useCallback(() => setOpen(false), []);
+
+  const compactNav = useMemo(() => 
+    theme === "retro" ? isTabletOrBelow : isMobile, 
+    [theme, isTabletOrBelow, isMobile]
+  );
+
   const pendingRef = useRef(false);
   const mainRef = useRef<HTMLDivElement | null>(null);
+
+  // Optimized header height management with useCallback
+  const setHeaderHeight = useCallback(() => {
+    if (theme !== "retro") return;
+    const header = document.querySelector('header[data-app-header]') as HTMLElement | null;
+    if (!header) return;
+
+    const height = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--retro-header-h", `${height}px`);
+  }, [theme]);
 
   // Retro-only: Dynamic header height CSS var and scroll reset after layout
   useEffect(() => {
     if (theme !== "retro") return;
-    const header = document.querySelector(
-      'header[data-app-header]'
-    ) as HTMLElement | null;
-    if (!header) return;
-
-    const setVar = () => {
-      const h = Math.ceil(header.getBoundingClientRect().height);
-      document.documentElement.style.setProperty("--retro-header-h", `${h}px`);
-    };
-
-    setVar();
-    const ro = new ResizeObserver(setVar);
-    ro.observe(header);
-    window.addEventListener("resize", setVar);
+    
+    setHeaderHeight();
+    const ro = new ResizeObserver(setHeaderHeight);
+    const header = document.querySelector('header[data-app-header]');
+    if (header) ro.observe(header);
+    
+    window.addEventListener("resize", setHeaderHeight);
 
     return () => {
       ro.disconnect();
-      window.removeEventListener("resize", setVar);
+      window.removeEventListener("resize", setHeaderHeight);
     };
-  }, [theme]);
+  }, [theme, setHeaderHeight]);
 
-  // Scroll handling (non-retro only): reset to top and focus main for a11y
-  useEffect(() => {
-    if (theme === "retro") return;
-    if ("scrollRestoration" in window.history) {
-      try {
-        window.history.scrollRestoration = "manual";
-      } catch {}
-    }
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-        mainRef.current?.focus();
-      });
-    });
-  }, [location.pathname, theme]);
+  // Enhanced scroll reset using custom hook
+  const { resetScroll } = useScrollReset({
+    enabled: true,
+    behavior: "auto",
+    respectHash: true,
+    containerSelector: theme === "retro" ? ".retro-main-content" : undefined
+  });
 
-  // Retro-only: scroll reset safeguard to ensure default position without JS scrolling
+  // Enhanced scroll reset without focus interference
   useEffect(() => {
-    if (theme !== "retro") return;
-    if (window.location.hash) return; // respect hash navigation
-    const container = mainRef.current;
-    if (!container) return;
-    if (container.scrollTop !== 0) {
-      container.scrollTop = 0;
-    }
-    let parent = container.parentElement;
-    while (parent && parent !== document.body) {
-      if (parent.scrollTop !== 0) {
-        parent.scrollTop = 0;
+    // Longer delay to ensure layout is fully settled before scroll reset
+    const scrollTimer = setTimeout(() => {
+      // Ensure we scroll to top
+      if (theme === "retro") {
+        const container = document.querySelector('.retro-main-content');
+        if (container) {
+          container.scrollTop = 0;
+        }
+      } else {
+        window.scrollTo(0, 0);
       }
-      parent = parent.parentElement;
-    }
-  }, [location.pathname, theme]);
+      
+      // Force another scroll reset as backup
+      resetScroll();
+    }, 150);
+    
+    return () => {
+      clearTimeout(scrollTimer);
+    };
+  }, [location.pathname, theme, resetScroll]);
+
+  // Force scroll reset on initial app load/reload
+  useEffect(() => {
+    // Run on mount to handle page reloads
+    const handleInitialLoad = () => {
+      if (theme === "retro") {
+        const container = document.querySelector('.retro-main-content');
+        if (container) {
+          container.scrollTop = 0;
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    // Run immediately and after a short delay for layout settling
+    handleInitialLoad();
+    const timer = setTimeout(handleInitialLoad, 100);
+    
+    return () => clearTimeout(timer);
+  }, []); // Empty dependency array - run only on mount
+
+  // Optimized loading state management
+  const updateLoadingState = useCallback((updates: Partial<LoadingState>) => {
+    setLoadingState(prev => ({ ...prev, ...updates }));
+  }, []);
 
   // Retro-only: show loader only if navigation takes >1s and fade away automatically
   useEffect(() => {
     if (theme !== "retro") return;
+    
     pendingRef.current = true;
-    setRenderLoader(false);
-    setLoaderVisible(false);
+    updateLoadingState({ shouldRender: false, isVisible: false });
 
     const showTimer = window.setTimeout(() => {
       if (pendingRef.current) {
-        setRenderLoader(true);
-        requestAnimationFrame(() => setLoaderVisible(true));
+        updateLoadingState({ shouldRender: true });
+        requestAnimationFrame(() => updateLoadingState({ isVisible: true }));
       }
     }, 1000);
 
@@ -106,9 +157,9 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       requestAnimationFrame(() => {
         pendingRef.current = false;
         // If loader is visible, fade it out and then unmount
-        if (renderLoader) {
-          setLoaderVisible(false);
-          window.setTimeout(() => setRenderLoader(false), 300);
+        if (loadingState.shouldRender) {
+          updateLoadingState({ isVisible: false });
+          window.setTimeout(() => updateLoadingState({ shouldRender: false }), 300);
         }
       });
     });
@@ -116,46 +167,56 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     return () => {
       window.clearTimeout(showTimer);
       pendingRef.current = false;
-      setLoaderVisible(false);
-      setRenderLoader(false);
+      updateLoadingState({ isVisible: false, shouldRender: false });
     };
-  }, [location.pathname, theme]);
+  }, [location.pathname, theme, updateLoadingState, loadingState.shouldRender]);
+
+  // Track route changes for performance monitoring
+  useEffect(() => {
+    startRouteTimer();
+    
+    // End timer after a short delay to allow content to render
+    const timer = setTimeout(() => {
+      endRouteTimer(location.pathname);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [location.pathname, startRouteTimer, endRouteTimer]);
 
   return (
-    <div className={cn("min-h-screen grid grid-rows-[auto_1fr]", theme === "retro" ? "lg:grid-cols-[16rem_1fr]" : "md:grid-cols-[16rem_1fr]")}>
+    <div className={cn("min-h-screen grid grid-rows-[auto_1fr] min-w-[320px]", theme === "retro" ? "lg:grid-cols-[16rem_1fr]" : "md:grid-cols-[16rem_1fr]")}>
       <AppHeader onToggleSidebar={toggle} className="col-span-full" />
 
       {/* Sidebar */}
       <AppSidebar open={compactNav ? open : true} onClose={close} />
 
       {/* Main content */}
-      <main className={cn("bg-background", theme === "retro" && "retro-main")}>
+      <main className={cn("bg-background min-w-0", theme === "retro" && "retro-main")}>
         <div
           ref={mainRef}
-          tabIndex={-1}
-          aria-busy={renderLoader || undefined}
+          aria-busy={loadingState.shouldRender || undefined}
           className={cn(
             theme === "retro"
-              ? "retro-main-content"
-              : "m-4 lg:m-8 container"
+              ? "retro-main-content min-w-0"
+              : "m-4 lg:m-8 container min-w-0"
           )}
         >
           {children}
         </div>
       </main>
 
-      {theme === "retro" && renderLoader && (
+      {theme === "retro" && loadingState.shouldRender && (
         <div
           className={cn(
             "fixed inset-0 z-50 grid place-items-center bg-background/80 backdrop-blur-sm transition-opacity duration-300",
-            loaderVisible ? "opacity-100" : "opacity-0"
+            loadingState.isVisible ? "opacity-100" : "opacity-0"
           )}
           role="status"
           aria-live="assertive"
           aria-atomic="true"
         >
           <div className="flex flex-col items-center gap-3">
-            <PixelScorpion size={64} />
+            <RetroScorpion size={64} />
             <span className="text-sm">Loading…</span>
           </div>
         </div>

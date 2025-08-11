@@ -16,20 +16,23 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import ComponentPreviewCard from "@/components/retro/ComponentPreviewCard";
+import { Calendar, ArrowRight } from "lucide-react";
 import PixelScorpion from "@/components/retro/display/PixelScorpion";
+import { useScrollReset } from "@/hooks/use-scroll-reset";
 
 const ComponentsPage = () => {
   const { toast } = useToast();
   const [progress, setProgress] = useState(20);
+  
+  // Reset scroll position when navigating to this page
+  useScrollReset();
 
   useEffect(() => {
-    document.title = "UI Components Demo · shadcn + Tailwind";
+    document.title = "UI Components Demo · Scorpion UI";
   }, []);
 
   useEffect(() => {
@@ -53,305 +56,159 @@ const ComponentsPage = () => {
         </Breadcrumb>
       </header>
 
-      <h1 className="text-2xl font-bold tracking-tight">UI Components Demo</h1>
+      <header>
+        <h1 className="text-2xl font-bold tracking-tight">UI Components</h1>
+        <p className="text-sm text-muted-foreground">Interactive demos and documentation for each component category</p>
+      </header>
 
-      <section aria-labelledby="nav" className="grid gap-6 md:grid-cols-2 component-grid">
-        <Card>
-          <CardHeader>
-            <CardTitle id="nav">Navigation</CardTitle>
-            <CardDescription>Tabs, Breadcrumb, Pagination</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <Tabs defaultValue="account" className="w-full">
-              <TabsList>
-                <TabsTrigger value="account">Account</TabsTrigger>
-                <TabsTrigger value="password">Password</TabsTrigger>
-              </TabsList>
-              <TabsContent value="account">Account content</TabsContent>
-              <TabsContent value="password">Password content</TabsContent>
-            </Tabs>
+      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 component-grid">
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/avatar" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Avatar</span>
+              <span className="text-xs text-muted-foreground">User profile images</span>
+            </div>
+            <div className="w-full">
+              <Avatar>
+                <AvatarFallback>SU</AvatarFallback>
+              </Avatar>
+            </div>
+          </a>
+        </Button>
 
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" isActive>2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-            <div className="pt-2">
-              <Button asChild size="sm"><a href="/components/navigation">View Details</a></Button>
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/navigation" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Navigation</span>
+              <span className="text-xs text-muted-foreground">Tabs, breadcrumbs, pagination</span>
             </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Interactive</CardTitle>
-            <CardDescription>Buttons, Popover, Dropdown</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex flex-wrap gap-2">
-              <Button>Default</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="link">Link</Button>
-              <Button variant="hero">Hero</Button>
-            </div>
-            <div className="flex items-center gap-3">
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline"><Calendar /> Pick date</Button>
-                </PopoverTrigger>
-                <PopoverContent className="z-[60]" align="start">
-                  <p className="text-sm text-muted-foreground">Place your datepicker here.</p>
-                </PopoverContent>
-              </Popover>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline">Menu</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="z-[60]">
-                  <DropdownMenuItem>Item One</DropdownMenuItem>
-                  <DropdownMenuItem>Item Two</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </CardContent>
-          <div className="px-6 pb-6">
-            <div className="flex flex-wrap gap-2">
-              <Button asChild size="sm"><a href="/components/buttons">Explore Buttons</a></Button>
-              <Button asChild size="sm" variant="outline"><a href="/components/tooltip">Tooltips</a></Button>
-            </div>
-          </div>
-        </Card>
-      </section>
-
-      <section aria-labelledby="forms" className="grid gap-6 md:grid-cols-2 component-grid">
-        <Card>
-          <CardHeader>
-            <CardTitle id="forms">Forms</CardTitle>
-            <CardDescription>Input, Select, Checkbox, Radio, Textarea</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Email</label>
-              <Input placeholder="you@example.com" />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Select</label>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose one" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="a">Option A</SelectItem>
-                  <SelectItem value="b">Option B</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Preferences</label>
-              <div className="flex items-center gap-3">
-                <Checkbox id="cb1" /> <label htmlFor="cb1" className="text-sm">Email alerts</label>
-                <Checkbox id="cb2" /> <label htmlFor="cb2" className="text-sm">Weekly digest</label>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Plan</label>
-              <RadioGroup defaultValue="starter" className="flex gap-4">
-                <div className="flex items-center gap-2"><RadioGroupItem id="r1" value="starter" /> <label htmlFor="r1">Starter</label></div>
-                <div className="flex items-center gap-2"><RadioGroupItem id="r2" value="pro" /> <label htmlFor="r2">Pro</label></div>
-              </RadioGroup>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Message</label>
-              <Textarea placeholder="Tell us more..." />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Feedback</CardTitle>
-            <CardDescription>Alert, Toast, Progress, Skeleton</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Alert>
-              <AlertTitle>Heads up!</AlertTitle>
-              <AlertDescription>This is a simple alert for contextual information.</AlertDescription>
-            </Alert>
-            <div className="flex items-center gap-2">
-              <Button onClick={() => toast({ title: "Saved", description: "Your changes were saved." })}>Show Toast</Button>
-              <Button variant="outline" onClick={() => toast({ title: "Error", description: "Something went wrong.", variant: "destructive" })}>Show Error</Button>
-            </div>
-            <Progress value={progress} />
-            <div className="grid grid-cols-3 gap-2">
-              <Skeleton className="h-8 w-full" />
-              <Skeleton className="h-8 w-full" />
-              <Skeleton className="h-8 w-full" />
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
-      <section aria-labelledby="data" className="grid gap-6 md:grid-cols-2 component-grid">
-        <Card className="md:col-span-2">
-          <CardHeader>
-            <CardTitle id="data">Data</CardTitle>
-            <CardDescription>Table example</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableCaption>Recent invoices</TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Amount</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Acme Inc.</TableCell>
-                  <TableCell>Paid</TableCell>
-                  <TableCell className="text-right">$2,400.00</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Globex</TableCell>
-                  <TableCell>Pending</TableCell>
-                  <TableCell className="text-right">$850.00</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </section>
-
-      <section aria-labelledby="layout" className="grid gap-6 md:grid-cols-2 component-grid">
-        <Card>
-          <CardHeader>
-            <CardTitle id="layout">Layout</CardTitle>
-            <CardDescription>Card, Separator, Dialog, Sheet</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Separator />
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="outline">Open Dialog</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Welcome</DialogTitle>
-                  <DialogDescription>Thanks for trying the demo.</DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-          </CardContent>
-        </Card>
-      </section>
-      
-      <section aria-labelledby="catalog" className="grid gap-6 md:grid-cols-3 component-grid">
-        <h2 id="catalog" className="sr-only">Component Catalog</h2>
-        <TooltipProvider>
-          <ComponentPreviewCard title="Navigation" description="Tabs, Breadcrumbs, Pagination" href="/components/navigation">
-            <div className="space-y-3">
-              <Tabs defaultValue="one" className="w-full">
-                <TabsList>
-                  <TabsTrigger value="one">One</TabsTrigger>
-                  <TabsTrigger value="two">Two</TabsTrigger>
+            <div className="w-full">
+              <Tabs defaultValue="home" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="home" className="text-xs">Home</TabsTrigger>
+                  <TabsTrigger value="about" className="text-xs">About</TabsTrigger>
                 </TabsList>
               </Tabs>
             </div>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Buttons" description="Variants and sizes" href="/components/buttons">
-            <div className="flex flex-wrap gap-2">
-              <Button size="sm">Default</Button>
-              <Button size="sm" variant="secondary">Secondary</Button>
-              <Button size="sm" variant="outline">Outline</Button>
+          </a>
+        </Button>
+        
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/buttons" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Buttons</span>
+              <span className="text-xs text-muted-foreground">Interactive elements</span>
             </div>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Forms" description="Inputs and controls" href="/components/forms">
-            <div className="space-y-2">
-              <Input placeholder="Email" />
-              <div className="flex items-center gap-2"><Checkbox id="o1" /> <label htmlFor="o1" className="text-sm">Opt‑in</label></div>
+            <div className="w-full">
+              <Button size="sm">Click me</Button>
             </div>
-          </ComponentPreviewCard>
+          </a>
+        </Button>
 
-          <ComponentPreviewCard title="Cards" description="Layouts and content" href="/components/cards">
-            <div className="rounded-md border p-3 text-xs text-muted-foreground">A compact content block inside a card.</div>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Modals" description="Dialogs & Sheets" href="/components/modals">
-            <Dialog>
-              <DialogTrigger asChild><Button size="sm" variant="outline">Open</Button></DialogTrigger>
-              <DialogContent className="sm:max-w-xs"><DialogHeader><DialogTitle>Hi</DialogTitle><DialogDescription>Mini dialog.</DialogDescription></DialogHeader></DialogContent>
-            </Dialog>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Typography" description="Scale and styles" href="/components/type">
-            <div>
-              <div className="text-base">Heading</div>
-              <p className="text-sm text-muted-foreground">Body text sample.</p>
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/badges" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Badges</span>
+              <span className="text-xs text-muted-foreground">Status indicators</span>
             </div>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Tooltips" description="Hover/focus helpers" href="/components/tooltip">
-            <Tooltip>
-              <TooltipTrigger asChild><Button size="sm" variant="outline">Hover me</Button></TooltipTrigger>
-              <TooltipContent>Tip content</TooltipContent>
-            </Tooltip>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Elevation" description="Shadow levels" href="/components/elevation">
-            <div className="flex items-end gap-3">
-              <div className="h-6 w-10 rounded bg-card shadow-e1" />
-              <div className="h-8 w-10 rounded bg-card shadow-e3" />
-              <div className="h-10 w-10 rounded bg-card shadow-e5" />
+            <div className="w-full flex gap-2">
+              <Badge variant="secondary">New</Badge>
+              <Badge variant="outline">Beta</Badge>
             </div>
-          </ComponentPreviewCard>
+          </a>
+        </Button>
 
-          <ComponentPreviewCard title="Spacing" description="Rhythm utilities" href="/components/spacing">
-            <div className="space-y-[var(--space-8)]">
-              <div className="h-1 bg-muted rounded" />
-              <div className="h-1 bg-muted rounded" />
-              <div className="h-1 bg-muted rounded" />
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/forms" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Forms</span>
+              <span className="text-xs text-muted-foreground">Input fields & controls</span>
             </div>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Feedback" description="Alerts & toasts" href="/components/feedback">
-            <Alert className="border-[3px]"><AlertTitle>Info</AlertTitle><AlertDescription>Quick notice.</AlertDescription></Alert>
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Progress" description="Linear & circular" href="/components/progress">
-            <Progress value={60} />
-          </ComponentPreviewCard>
-
-          <ComponentPreviewCard title="Loading" description="Loading states and progress indicators" href="/components/loading" ctaText="Explore Loading">
-            <div className="flex items-center gap-3">
-              <PixelScorpion size={40} />
+            <div className="w-full">
+              <Input placeholder="Enter text..." className="text-xs" />
             </div>
-          </ComponentPreviewCard>
+          </a>
+        </Button>
 
-          <ComponentPreviewCard title="Pickers" description="Selects & more" href="/components/pickers">
-            <Select>
-              <SelectTrigger className="w-full"><SelectValue placeholder="Choose" /></SelectTrigger>
-              <SelectContent><SelectItem value="a">A</SelectItem><SelectItem value="b">B</SelectItem></SelectContent>
-            </Select>
-          </ComponentPreviewCard>
-        </TooltipProvider>
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/cards" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Cards</span>
+              <span className="text-xs text-muted-foreground">Layouts & content blocks</span>
+            </div>
+            <div className="w-full">
+              <div className="border rounded-md p-2 bg-card">
+                <div className="h-2 bg-muted rounded mb-1"></div>
+                <div className="h-1 bg-muted rounded w-2/3"></div>
+              </div>
+            </div>
+          </a>
+        </Button>
+
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/modals" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Modals</span>
+              <span className="text-xs text-muted-foreground">Dialogs & sheets</span>
+            </div>
+            <div className="w-full">
+              <div className="border rounded-sm p-1 bg-background shadow-sm">
+                <div className="h-1 bg-muted rounded mb-1"></div>
+                <div className="h-1 bg-muted rounded w-1/2"></div>
+              </div>
+            </div>
+          </a>
+        </Button>
+
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/feedback" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Feedback</span>
+              <span className="text-xs text-muted-foreground">Alerts & progress</span>
+            </div>
+            <div className="w-full">
+              <Progress value={60} className="h-1" />
+            </div>
+          </a>
+        </Button>
+
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/loading" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Loading</span>
+              <span className="text-xs text-muted-foreground">Loading states</span>
+            </div>
+            <div className="w-full">
+              <Skeleton className="h-4 w-4 rounded-full" />
+            </div>
+          </a>
+        </Button>
+
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/tooltip" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Tooltips</span>
+              <span className="text-xs text-muted-foreground">Hover & focus helpers</span>
+            </div>
+            <div className="w-full">
+              <div className="text-xs text-muted-foreground border-b border-dotted">Hover me</div>
+            </div>
+          </a>
+        </Button>
+
+
+        <Button asChild variant="outline" className="h-auto p-4 justify-start">
+          <a href="/components/progress" className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col gap-1 w-full">
+              <span className="font-medium">Progress</span>
+              <span className="text-xs text-muted-foreground">Linear & circular</span>
+            </div>
+            <div className="w-full">
+              <Progress value={progress} className="h-2" />
+            </div>
+          </a>
+        </Button>
+
       </section>
     </main>
   );

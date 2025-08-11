@@ -16,41 +16,80 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 const STORAGE_KEY = "scorpion-ui-theme";
 const RETRO_DARK_KEY = "scorpion-ui-retro-dark";
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<AppTheme>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as AppTheme | null;
-    return stored ?? "modern";
-  });
-  const [retroDark, setRetroDarkState] = useState<boolean>(() => {
+// Theme validation and fallback utilities
+const isValidTheme = (theme: string): theme is AppTheme => {
+  return theme === "modern" || theme === "retro";
+};
+
+const getStoredTheme = (): AppTheme => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored && isValidTheme(stored) ? stored : "modern";
+  } catch (error) {
+    console.warn("Failed to read theme from localStorage:", error);
+    return "modern";
+  }
+};
+
+const getStoredRetroDark = (): boolean => {
+  try {
     const stored = localStorage.getItem(RETRO_DARK_KEY);
     return stored === "true";
-  });
+  } catch (error) {
+    console.warn("Failed to read retro dark mode from localStorage:", error);
+    return false;
+  }
+};
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [theme, setThemeState] = useState<AppTheme>(getStoredTheme);
+  const [retroDark, setRetroDarkState] = useState<boolean>(getStoredRetroDark);
 
   const applyTheme = (t: AppTheme, rd: boolean) => {
-    const root = document.documentElement;
-    // data attribute for CSS targeting
-    root.setAttribute("data-theme", t);
-    // helper class for specificity
-    root.classList.toggle("theme-retro", t === "retro");
-    // retro-only dark mode flag
-    if (t === "retro") {
-      if (rd) root.setAttribute("data-retro-dark", "true");
-      else root.removeAttribute("data-retro-dark");
-    } else {
-      root.removeAttribute("data-retro-dark");
+    try {
+      const root = document.documentElement;
+      // data attribute for CSS targeting
+      root.setAttribute("data-theme", t);
+      // helper class for specificity
+      root.classList.toggle("theme-retro", t === "retro");
+      // retro-only dark mode flag
+      if (t === "retro") {
+        if (rd) root.setAttribute("data-retro-dark", "true");
+        else root.removeAttribute("data-retro-dark");
+      } else {
+        root.removeAttribute("data-retro-dark");
+      }
+    } catch (error) {
+      console.error("Failed to apply theme:", error);
+    }
+  };
+
+  const saveToStorage = (t: AppTheme, rd: boolean) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, t);
+      localStorage.setItem(RETRO_DARK_KEY, String(rd));
+    } catch (error) {
+      console.warn("Failed to save theme preferences to localStorage:", error);
     }
   };
 
   useEffect(() => {
     applyTheme(theme, retroDark);
-    localStorage.setItem(STORAGE_KEY, theme);
-    localStorage.setItem(RETRO_DARK_KEY, String(retroDark));
+    saveToStorage(theme, retroDark);
   }, [theme, retroDark]);
 
-  const setTheme = (t: AppTheme) => setThemeState(t);
+  const setTheme = (t: AppTheme) => {
+    if (!isValidTheme(t)) {
+      console.warn(`Invalid theme "${t}", falling back to "modern"`);
+      setThemeState("modern");
+      return;
+    }
+    setThemeState(t);
+  };
+
   const toggleTheme = () => setThemeState((prev) => (prev === "retro" ? "modern" : "retro"));
 
-  const setRetroDark = (v: boolean) => setRetroDarkState(v);
+  const setRetroDark = (v: boolean) => setRetroDarkState(Boolean(v));
   const toggleRetroDark = () => setRetroDarkState((prev) => !prev);
 
   const value = useMemo(
@@ -61,8 +100,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
-export function useAppTheme() {
+export function useAppTheme(): ThemeContextValue {
   const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error("useAppTheme must be used within ThemeProvider");
+  if (!ctx) {
+    // Enhanced error message with usage guidance
+    throw new Error(
+      "useAppTheme must be used within ThemeProvider. " +
+      "Make sure your component is wrapped with <ThemeProvider>."
+    );
+  }
   return ctx;
 }

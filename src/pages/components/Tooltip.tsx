@@ -37,8 +37,7 @@ const TooltipDocsPage = () => { const { theme } = useAppTheme();
         <p className="text-sm text-muted-foreground">Directional arrows, smart collision, keyboard/focus accessible</p>
       </header>
 
-      <RetroTooltipProvider>
-        <section className="grid gap-6 md:grid-cols-2 component-grid">
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
           <Card>
             <CardHeader>
               <CardTitle>Directional variants</CardTitle>
@@ -101,7 +100,6 @@ const TooltipDocsPage = () => { const { theme } = useAppTheme();
             </CardContent>
           </Card>
         </section>
-      </RetroTooltipProvider>
 
       <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>

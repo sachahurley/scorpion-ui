@@ -68,11 +68,11 @@ export default function LoadingPage() {
             <CardDescription>Adjust demo duration and trigger states</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center gap-3">
-              <label htmlFor="dur" className="text-sm">Duration (ms)</label>
-              <input id="dur" type="number" min={200} step={100} value={duration} onChange={(e) => setDuration(parseInt(e.target.value || "0", 10))} className="h-9 w-32 rounded-md border bg-background px-2 text-sm" />
-              <Button size="sm" onClick={startOverlay}>Full-page overlay</Button>
-              <Button size="sm" variant="outline" onClick={startComponentLoad}>Component loading</Button>
+            <div className="flex flex-wrap items-center gap-3">
+              <label htmlFor="dur" className="text-sm whitespace-nowrap">Duration (ms)</label>
+              <input id="dur" type="number" min={200} step={100} value={duration} onChange={(e) => setDuration(parseInt(e.target.value || "0", 10))} className="h-9 w-32 min-w-0 rounded-md border bg-background px-2 text-sm" />
+              <Button size="sm" onClick={startOverlay} className="w-full sm:w-auto">Full-page overlay</Button>
+              <Button size="sm" variant="outline" onClick={startComponentLoad} className="w-full sm:w-auto">Component loading</Button>
             </div>
           </CardContent>
         </Card>
@@ -82,7 +82,7 @@ export default function LoadingPage() {
             <CardTitle>8‑bit Scorpion</CardTitle>
             <CardDescription>Signature retro loading mascot</CardDescription>
           </CardHeader>
-          <CardContent className="flex items-center gap-6">
+          <CardContent className="flex flex-wrap items-center gap-6">
             <PixelScorpion size={56} />
             <PixelScorpion size={40} className="anim-speed-fast" />
             <PixelScorpion size={72} className="anim-speed-slow" />
@@ -97,7 +97,7 @@ export default function LoadingPage() {
             <CardTitle>Retro Spinners</CardTitle>
             <CardDescription>Pixel grid animation styles</CardDescription>
           </CardHeader>
-          <CardContent className="flex items-center gap-4">
+          <CardContent className="flex flex-wrap items-center gap-4">
             <PixelSpinner size={16} />
             <PixelSpinner size={24} />
             <PixelSpinner size={40} className="anim-speed-fast" />

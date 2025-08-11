@@ -191,7 +191,9 @@ function CodeBlock({ code, label }: { code: string; label: string }) {
       await navigator.clipboard.writeText(code);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch {}
+    } catch (error) {
+      console.warn('Failed to copy to clipboard:', error);
+    }
   };
   return (
     <TooltipProvider>

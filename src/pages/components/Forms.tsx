@@ -45,7 +45,7 @@ const FormsPage = () => {
             <CardTitle>Inputs</CardTitle>
             <CardDescription>Text, select, checkbox, radio, textarea</CardDescription>
           </CardHeader>
-          <CardContent className="w-full space-y-4">
+          <CardContent className="space-y-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Email</label>
               <Input placeholder="you@example.com" />

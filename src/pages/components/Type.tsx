@@ -78,7 +78,7 @@ const TypePage = () => {
 
       <h1 className="text-2xl font-bold tracking-tight">Typography System</h1>
 
-      <section>
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Hierarchy</CardTitle>
@@ -99,7 +99,7 @@ const TypePage = () => {
         </Card>
       </section>
 
-      <section>
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>Size Specimens</CardTitle>
@@ -132,7 +132,7 @@ const TypePage = () => {
 
       <DesignTokensTable title="Design Tokens (Typography)" tokens={tokens} />
 
-      <section>
+      <section className="grid gap-6 md:grid-cols-2 component-grid">
         <Card>
           <CardHeader>
             <CardTitle>CSS Custom Properties</CardTitle>
