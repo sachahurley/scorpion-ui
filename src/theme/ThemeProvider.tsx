@@ -24,10 +24,10 @@ const isValidTheme = (theme: string): theme is AppTheme => {
 const getStoredTheme = (): AppTheme => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored && isValidTheme(stored) ? stored : "modern";
+    return stored && isValidTheme(stored) ? stored : "retro";
   } catch (error) {
     console.warn("Failed to read theme from localStorage:", error);
-    return "modern";
+    return "retro";
   }
 };
 
