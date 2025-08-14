@@ -47,7 +47,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <ThemeProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/scorpion-ui">
             <AppLayout>
             <Routes>
             <Route path="/" element={<Index />} />
