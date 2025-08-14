@@ -101,7 +101,7 @@ export function RetroIcon({
 
   const themeFolder = getThemeFolder()
   const categoryFolder = categoryMap[category]
-  const imagePath = `/Icons/${themeFolder}/${categoryFolder}/${name}.png`
+  const imagePath = `/scorpion-ui/Icons/${themeFolder}/${categoryFolder}/${name}.png`
   
   const handleImageLoad = () => {
     setImageLoaded(true)

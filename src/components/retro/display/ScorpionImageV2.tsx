@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useAppTheme } from "@/theme/ThemeProvider";
+import { ASSETS } from "@/lib/assets";
 
 export interface ScorpionImageV2Props extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "hero" | "header";
@@ -27,7 +28,7 @@ const ScorpionImageV2 = ({
       // Header variant: normal contrast (dark scorpion on light bg, light scorpion on dark bg)
       if (theme === "modern") {
         return {
-          src: "/scorpion-black.png",
+          src: ASSETS.scorpionBlack,
           filter: "none" // Black scorpion for light background
         };
       }
@@ -35,12 +36,12 @@ const ScorpionImageV2 = ({
       // Retro theme header
       if (retroDark) {
         return {
-          src: "/scorpion-white.png",
+          src: ASSETS.scorpionWhite,
           filter: "brightness(0) saturate(100%) invert(100%)" // White scorpion for dark background
         };
       } else {
         return {
-          src: "/scorpion-black.png",
+          src: ASSETS.scorpionBlack,
           filter: "none" // Black scorpion for light background
         };
       }
@@ -49,7 +50,7 @@ const ScorpionImageV2 = ({
     // Hero variant: original logic (inverted contrast for hero backgrounds)
     if (theme === "modern") {
       return {
-        src: "/scorpion-black.png",
+        src: ASSETS.scorpionBlack,
         filter: "invert(1)" // White scorpion for modern theme
       };
     }
@@ -62,7 +63,7 @@ const ScorpionImageV2 = ({
       };
     } else {
       return {
-        src: "/scorpion-white.png", 
+        src: ASSETS.scorpionWhite, 
         filter: "brightness(0) saturate(100%) invert(100%)" // white
       };
     }
