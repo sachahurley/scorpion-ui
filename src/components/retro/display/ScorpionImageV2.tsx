@@ -58,7 +58,7 @@ const ScorpionImageV2 = ({
     // Retro theme - use different versions for light/dark modes
     if (retroDark) {
       return {
-        src: "/scorpion-neutral.png",
+        src: ASSETS.scorpionNeutral,
         filter: "brightness(0) saturate(100%) invert(14%) sepia(7%) saturate(897%) hue-rotate(179deg) brightness(92%) contrast(91%)" // neutral-900
       };
     } else {
