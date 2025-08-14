@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { useScrollReset } from "@/hooks/use-scroll-reset";
+import avatar8bitImg from "/avatar_8bit.png";
+import avatarProfile2Img from "/avatar-profile-2.png";
 
 const AvatarPage = () => {
   // Reset scroll position when navigating to this page
@@ -85,11 +87,11 @@ const AvatarPage = () => {
           <CardContent>
             <div className="flex items-center gap-4">
               <Avatar>
-                <AvatarImage src="/avatar_8bit.png" alt="8-bit avatar" />
+                <AvatarImage src={avatar8bitImg} alt="8-bit avatar" />
                 <AvatarFallback>8B</AvatarFallback>
               </Avatar>
               <Avatar>
-                <AvatarImage src="/avatar-profile-2.png" alt="Profile avatar" />
+                <AvatarImage src={avatarProfile2Img} alt="Profile avatar" />
                 <AvatarFallback>P2</AvatarFallback>
               </Avatar>
               <Avatar>

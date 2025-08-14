@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import scorpionHeroImg from "/scorpion-hero.png";
 
 export interface ScorpionImageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -19,7 +20,7 @@ const ScorpionImage = ({
       {...props}
     >
       <img
-        src="/scorpion-hero.png"
+        src={scorpionHeroImg}
         alt="8-bit scorpion"
         className="w-full h-full object-contain"
         style={{ 
