@@ -15,6 +15,8 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const STORAGE_KEY = "scorpion-ui-theme";
 const RETRO_DARK_KEY = "scorpion-ui-retro-dark";
+const VERSION_KEY = "scorpion-ui-version";
+const CURRENT_VERSION = "1.0.0";
 
 // Theme validation and fallback utilities
 const isValidTheme = (theme: string): theme is AppTheme => {
@@ -23,8 +25,21 @@ const isValidTheme = (theme: string): theme is AppTheme => {
 
 const getStoredTheme = (): AppTheme => {
   try {
+    // Check if this is a new version that should reset to retro
+    const storedVersion = localStorage.getItem(VERSION_KEY);
+    if (storedVersion !== CURRENT_VERSION) {
+      // Reset to retro theme for new version
+      localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+      localStorage.removeItem(STORAGE_KEY);
+      return "retro";
+    }
+    
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored && isValidTheme(stored) ? stored : "retro";
+    // If no stored value exists, default to retro
+    if (!stored) {
+      return "retro";
+    }
+    return isValidTheme(stored) ? stored : "retro";
   } catch (error) {
     console.warn("Failed to read theme from localStorage:", error);
     return "retro";
