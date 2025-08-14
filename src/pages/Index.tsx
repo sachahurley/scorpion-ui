@@ -9,7 +9,7 @@ import { useAppTheme } from "@/theme/ThemeProvider";
 import { useScrollReset } from "@/hooks/use-scroll-reset";
 import { PixelWindLines, PixelRobotHead, PixelPersonWide } from "@/components/retro/icons/PixelIcons";
 import VisitorCounter from "@/components/ui/visitor-counter";
-import avatar8bitImg from "/avatar_8bit.png";
+import { ASSETS } from "@/lib/assets";
 
 const Index = () => {
   const { theme } = useAppTheme();
@@ -121,7 +121,7 @@ const Index = () => {
           <CardContent className="pt-4 sm:pt-6">
             <div className="flex flex-col items-start space-y-4">
               <Avatar className="h-16 w-16">
-                <AvatarImage src={avatar8bitImg} alt="Sacha Hurley" />
+                <AvatarImage src={ASSETS.avatar8bit} alt="Sacha Hurley" />
                 <AvatarFallback className="text-lg">SH</AvatarFallback>
               </Avatar>
               <div className="space-y-3">

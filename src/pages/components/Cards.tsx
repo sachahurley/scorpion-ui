@@ -2,11 +2,7 @@ import { useEffect } from "react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardImage } from "@/components/ui/card";
 import DesignTokensTable, { TokenRow } from "@/components/docs/DesignTokensTable";
-import landscape1Img from "/landscape-1.png";
-import landscape2Img from "/landscape-2.png";
-import landscape4Img from "/landscape-4.png";
-import landscape5Img from "/landscape-5.png";
-import landscape6Img from "/landscape-6.png";
+import { ASSETS } from "@/lib/assets";
 
 const CardsPage = () => {
   useEffect(() => {
@@ -64,7 +60,7 @@ const CardsPage = () => {
         <Card>
           <CardImage>
             <img 
-              src={landscape1Img} 
+              src={ASSETS.landscape1} 
               alt="Landscape view 1" 
               className="w-full h-auto object-contain" 
             />
@@ -84,7 +80,7 @@ const CardsPage = () => {
         <Card>
           <CardImage>
             <img 
-              src={landscape2Img} 
+              src={ASSETS.landscape2} 
               alt="Landscape view 2" 
               className="w-full h-auto object-contain" 
             />
@@ -106,7 +102,7 @@ const CardsPage = () => {
         <Card>
           <CardImage>
             <img 
-              src={landscape4Img} 
+              src={ASSETS.landscape4} 
               alt="Landscape view 4" 
               className="w-full h-auto object-contain" 
             />
@@ -120,7 +116,7 @@ const CardsPage = () => {
         <Card>
           <CardImage>
             <img 
-              src={landscape5Img} 
+              src={ASSETS.landscape5} 
               alt="Landscape view 5" 
               className="w-full h-auto object-contain" 
             />
@@ -134,7 +130,7 @@ const CardsPage = () => {
         <Card>
           <CardImage>
             <img 
-              src={landscape1Img} 
+              src={ASSETS.landscape1} 
               alt="Landscape view 1" 
               className="w-full h-auto object-contain" 
             />
@@ -150,7 +146,7 @@ const CardsPage = () => {
         <Card>
           <CardImage>
             <img 
-              src={landscape6Img} 
+              src={ASSETS.landscape6} 
               alt="Landscape view 6" 
               className="w-full h-auto object-contain" 
             />
@@ -165,7 +161,7 @@ const CardsPage = () => {
                 <h4 className="font-medium mb-2">Full Aspect Ratio (No Cropping):</h4>
                 <pre className="text-xs p-3 rounded-md border bg-card overflow-x-auto"><code>{`<Card>
   <CardImage>
-    <img src={landscape1Img} alt="Description" className="w-full h-auto object-contain" />
+    <img src={ASSETS.landscape1} alt="Description" className="w-full h-auto object-contain" />
   </CardImage>
   <CardHeader>
     <CardTitle>Your Title</CardTitle>
