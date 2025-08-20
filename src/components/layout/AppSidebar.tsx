@@ -107,6 +107,10 @@ const AppSidebar = ({ open, onClose }: AppSidebarProps) => {
             </button>
             {foundationsOpen && (
               <div className="mt-1 space-y-1">
+                <NavLink to="/foundations" end className={linkCls} onClick={onClose}>
+                  <PixelTreeConnector className="opacity-60" />
+                  <span className="pl-px">Overview</span>
+                </NavLink>
                 <NavLink to="/foundations/border-radius" className={linkCls} onClick={onClose}>
                   <PixelTreeConnector className="opacity-60" />
                   <span className="pl-px">Border radius</span>

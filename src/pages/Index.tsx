@@ -34,7 +34,7 @@ const Index = () => {
               Scorpion UI
             </h1>
           )}
-          <p className="mt-4 max-w-2xl text-brand-foreground/90">
+          <p className="mt-6 max-w-2xl text-brand-foreground/90">
             A clean, modern layout built with Tailwind CSS and shadcn/ui. Explore the components and start building.
           </p>
           {theme === "retro" ? (

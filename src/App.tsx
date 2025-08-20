@@ -25,6 +25,7 @@ import SpacingDocsPage from "./pages/components/Spacing";
 import FeedbackPage from "./pages/components/Feedback";
 import LoadingPage from "./pages/components/Loading";
 import { Icons as IconsPage } from "./pages/components/Icons";
+import FoundationsPage from "./pages/Foundations";
 import ColorBasePage from "./pages/foundations/ColorBase";
 import ColorSemanticsPage from "./pages/foundations/ColorSemantics";
 import BorderRadiusPage from "./pages/foundations/BorderRadius";
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="/components/feedback" element={<FeedbackPage />} />
             <Route path="/components/loading" element={<LoadingPage />} />
             {/* Foundation pages */}
+            <Route path="/foundations" element={<FoundationsPage />} />
             <Route path="/foundations/border-radius" element={<BorderRadiusPage />} />
             <Route path="/foundations/color-base" element={<ColorBasePage />} />
             <Route path="/foundations/color-semantics" element={<ColorSemanticsPage />} />
